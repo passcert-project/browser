@@ -170,6 +170,7 @@ export default class AutofillService implements AutofillServiceInterface {
     }
 
     async doAutoFill(options: any) {
+        console.log("@doAutoFill: options = ", options);
         let totpPromise: Promise<string> = null;
         const tab = await this.getActiveTab();
         if (!tab || !options.cipher || !options.pageDetails || !options.pageDetails.length) {
@@ -183,7 +184,7 @@ export default class AutofillService implements AutofillServiceInterface {
             if (pd.tab.id !== tab.id || pd.tab.url !== tab.url) {
                 return;
             }
-
+            console.log("@doAutofill: pageDetails -> ", pd);
             const fillScript = this.generateFillScript(pd.details, {
                 skipUsernameOnlyFill: options.skipUsernameOnlyFill || false,
                 onlyEmptyFields: options.onlyEmptyFields || false,
@@ -323,6 +324,7 @@ export default class AutofillService implements AutofillServiceInterface {
         switch (options.cipher.type) {
             case CipherType.Login:
                 fillScript = this.generateLoginFillScript(fillScript, pageDetails, filledFields, options);
+                console.info("generateFillScript -> ", fillScript);
                 break;
             case CipherType.Card:
                 fillScript = this.generateCardFillScript(fillScript, pageDetails, filledFields, options);
@@ -339,6 +341,8 @@ export default class AutofillService implements AutofillServiceInterface {
 
     private generateLoginFillScript(fillScript: AutofillScript, pageDetails: any,
         filledFields: { [id: string]: AutofillField; }, options: any): AutofillScript {
+
+            console.log("@ generateLoginFillScript -> ", [fillScript, pageDetails, filledFields, options]);
         if (!options.cipher.login) {
             return null;
         }
