@@ -1,32 +1,53 @@
-# Policies Present in Research
-
-## Tan et al.
-
-| Policy Annotation | Policy Description  | Minimum Length | Character Classes | Extra work |
-:---: | :---: | :---: | :---: | :---:
-|_1c8_| At least 1 character class | 8 |
-|_1c10_| At least 1 character class | 10 |
-|_1c12_| At least 1 character class | 12 |
-|_1c16_| At least 1 character class | 16 |
-|_3c8_| At least 3 character classes | 8 |
-|_3c12_| At least 3 character classes | 12 |
-|_4c8_| At least 4 character classes | 8 |
+# Policies Mentioned in Research
 
 
-## Shay et al.
+| Policy Annotation | Policy Description | Minimum Length |  Work |
+:---: | :---: | :---: | :---:
+|_1c8_| At least 1 character class | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)|
+|_1c10_| At least 1 character class | 10 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_1c12_| At least 1 character class | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_1c16_| At least 1 character class | 16 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_3c8_| At least 3 character classes | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_3c12_| At least 3 character classes | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_4c8_| At least 4 character classes | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_comp8_| At least 1 lowercase English letter, 1 uppercase English letter, 1 digit and 1 symbol (something that is not a digit or an English letter) --- Taken together, the letters must not form a word in our dictionary | 8 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411) | 
+|_basic12_|At least 12 characters | 12 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_basic16_|At least 16 characters | 16 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_basic20_|At least 20 characters | 20 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2class12_|At least 2 character classes |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_3class12_|At least 3 character classes |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_3class16_|At least 3 character classes |16| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2word12_|At least 2 words (letter sequences separated by a nonletter sequence)|12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2word16_|At least 2 words (letter sequences separated by a nonletter sequence)|16| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2list12_| Combines _2class12_ with the [blacklist](#blacklist) |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2s-list12_| Combines _2class12_ with the [warning](#blacklist-warning) |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2pattern12_| Combines _2class12_ with the [pattern](#pattern) requirement |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2list-patt12_| Combines the _2class12_ with the [pattern](#pattern) requirements and the [blacklist](#blacklist)|12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2s-list-patt12_| Combines the _2class12_ with the [pattern](#pattern) requirements and the [warning](#blacklist-warning)|12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 
-| Policy Annotation | Policy Description  | Minimum Length | Character Classes | Extra work |
-:---: | :---: | :---: | :---: | :---:
-|_comp8_| at least 8 characters, including a lowercase English letter,” “uppercase English letter,” “digit,” and “symbol (something that is not a digit or an English letter) “Taken together, the letters must not form a word in our dictionary.”|data3|
-|_basic12_|at least 12 characters | 12 |
-|_basic16_|at least 16 characters | 16 |
-|_basic20_|at least 20 characters | 20 |
-|_3class12_|at least 12 characters at least 3 of the four character classes |12|
-|_3class16_|at least 16 characters at least three of the four character classes |16|
-|_2word12_|at least 12 characters and two words (letter sequences separated by a nonletter sequence)|12|
-|_2word16_|at least 16 characters and two words (letter sequences separated by a nonletter sequence)|16|
-|_2list12_|Participants in 2list12 saw an explicit list of blacklisted substrings, and those in 2s-list12 were simply told “Do not include words commonly found in passwords (e.g. password), keyboard patterns (e.g., qazx), or other common patterns (e.g. 5678).” We used the following blacklist.|12|
-|_2s-list12_|Participants in 2list12 saw an explicit list of blacklisted substrings, and those in 2s-list12 were simply told “Do not include words commonly found in passwords (e.g. password), keyboard patterns (e.g., qazx), or other common patterns (e.g. 5678).” We used the following blacklist.|12|
-|_2pattern12_|This combined 2class12 with the pattern requirement, that the pass- word start and end with a lowercase letter. We hoped that this would lead to a more even distribution of special characters within passwords, making passwords more difficult to guess.|12|
-|_2list-patt12_|These conditions combined the blacklist and pattern requirements.|12|
-|_2s-list-patt12_|These conditions combined the blacklist and pattern requirements.|12|
+## Character Classes 
+- Uppercase Letters
+- Lowercase Letters
+- Digits
+- Symbols
+
+## Blacklist Warning
+From [Shay et al.'s](https://dl.acm.org/doi/pdf/10.1145/2891411) work:
+
+- Participants in _2s-list12_ were told ***“Do not include words commonly found in passwords (e.g. password), keyboard patterns (e.g., qazx), or other common patterns (e.g. 5678).”***
+## Blacklist
+
+From [Shay et al.'s](https://dl.acm.org/doi/pdf/10.1145/2891411) work:
+
+- Participants in _2list12_ saw an explicit list of blacklisted substrings:
+    - _123!_, _amazon_, _character_, _monkey_, _number_, _survey_, _this_, _turk_ 
+    - Any year between 1950 and 2049
+    - The same character four or more times in a row
+    - Any four consecutive characters from password
+    - Any four sequential digits (e.g., 5678)
+    - Any four sequential letters in the alphabet (e.g., wxyz)
+    - Any four consecutive characters on the keyboard (e.g., wsxc)
+
+## Pattern
+
+- The password should start and end with a _lowercase_ letter. 
