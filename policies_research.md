@@ -1,22 +1,22 @@
 # Policies Mentioned in Research
 
 
-| Policy Annotation | Policy Description | Minimum Length |  Work |
+| Policy Annotation | Policy Description | Minimum Length |  Research Work |
 :---: | :---: | :---: | :---:
-|_1c8_| At least 1 character class | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)|
-|_1c10_| At least 1 character class | 10 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_1c12_| At least 1 character class | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_1c16_| At least 1 character class | 16 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_3c8_| At least 3 character classes | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_3c12_| At least 3 character classes | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_4c8_| At least 4 character classes | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
-|_comp8_| At least 1 lowercase English letter, 1 uppercase English letter, 1 digit and 1 symbol (something that is not a digit or an English letter) --- Taken together, the letters must not form a word in our dictionary | 8 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411) | 
+|_1c8_| At least 1 [character class](#character-classes) | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)|
+|_1c10_| At least 1 [character class](#character-classes) | 10 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_1c12_| At least 1 [character class](#character-classes) | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_1c16_| At least 1 [character class](#character-classes) | 16 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_3c8_| At least 3 [character classes](#character-classes) | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_3c12_| At least 3 [character classes](#character-classes) | 12 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_4c8_| At least 4 [character classes](#character-classes) | 8 | [Tan et al.](https://www.andrew.cmu.edu/user/nicolasc/publications/Tan-CCS20.pdf)
+|_comp8_| At least 1 lowercase English letter, 1 uppercase English letter, 1 digit and 1 [symbol](#special-comp8)  | 8 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411) | 
 |_basic12_|At least 12 characters | 12 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 |_basic16_|At least 16 characters | 16 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 |_basic20_|At least 20 characters | 20 | [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
-|_2class12_|At least 2 character classes |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
-|_3class12_|At least 3 character classes |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
-|_3class16_|At least 3 character classes |16| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_2class12_|At least 2 [character classes](#character-classes) |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_3class12_|At least 3 [character classes](#character-classes) |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
+|_3class16_|At least 3 [character classes](#character-classes) |16| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 |_2word12_|At least 2 words (letter sequences separated by a nonletter sequence)|12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 |_2word16_|At least 2 words (letter sequences separated by a nonletter sequence)|16| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
 |_2list12_| Combines _2class12_ with the [blacklist](#blacklist) |12| [Shay et al.](https://dl.acm.org/doi/pdf/10.1145/2891411)
@@ -30,6 +30,12 @@
 - Lowercase Letters
 - Digits
 - Symbols
+
+
+## Special comp8
+- ***Symbol:*** something that is not a digit or an English letter
+- Taken together, the letters must not form a word in our dictionary
+
 
 ## Blacklist Warning
 From [Shay et al.'s](https://dl.acm.org/doi/pdf/10.1145/2891411) work:
