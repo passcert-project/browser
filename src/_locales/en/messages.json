@@ -1734,7 +1734,9 @@
     "message": "Password and form secure vault"
   },
   "tip_send": {
-    "message": "Set and send 'sends'"
+    "message": "Set and send 'sends'",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+
   },
   "tip_passGen": {
     "message": "Secure password generator"
@@ -1803,7 +1805,7 @@
     "message": "Policy to match URL from login information and website when autofilling"
   },
   "tip_clearClipboard": {
-    "message": "Policy to clear the temporary storage area for data that the user wants to copy from one place to another"
+    "message": "Policy to clear the temporary storage for data (clipboard) used to copy/paste"
   },
   "tip_disableAutoTotpCopy": {
     "message": "Disable the Time-based One-Time Password"
@@ -1831,7 +1833,27 @@
   },
   "tip_theme": {
     "message": "Change the application's color theme."
+  },
+  "tip_addSend": {
+    "message": "A Send is a secure way to transmit sensitive information to anyone",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+
+  },
+  "tip_currentAccessCount": {
+    "message": "Amount of times this send has been accessed",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+
+  },
+  "tip_sendHideText": {
+    "message": "The text will be hidden until the user toggles its visibility"
+  },
+  "tip_sendShareDesc": {
+    "message": "The clipboard is a temporary storage used to copy/paste text"
+  },
+  "tip_sendDisableDesc": {
+    "message": "Toggle access to the send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   }
 
-
+  
 }
