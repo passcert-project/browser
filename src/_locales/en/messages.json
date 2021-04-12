@@ -1728,7 +1728,7 @@
     "message": "Letters that may be mistaken for others, e.g. i and l"
   },
   "tip_currentTab": {
-    "message": "Info about forms and passwords in the current tab"
+    "message": "Information about forms and passwords in the current tab"
   },
   "tip_myVault": {
     "message": "Password and form secure vault"
@@ -1739,10 +1739,10 @@
 
   },
   "tip_passGen": {
-    "message": "Secure password generator"
+    "message": "Generate secure passwords"
   },
   "tip_settings": {
-    "message": "Settings tab"
+    "message": "Change settings"
   },
   "tip_vaultTimeout": {
     "message": "How long Bitwarden can be inactive before timing-out"
