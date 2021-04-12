@@ -13,7 +13,7 @@
 <content>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_enableAutoFillOnPageLoad' | i18n}}" appBoxRow>
                 <label for="autofill">{{'enableAutoFillOnPageLoad' | i18n}}</label>
                 <input id="autofill" type="checkbox" (change)="updateAutoFillOnPageLoad()"
                     [(ngModel)]="enableAutoFillOnPageLoad">
@@ -26,7 +26,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row" appBoxRow>
+            <div class="box-content-row" appA11yTitle="{{'tip_defaultUriMatchDetection' | i18n}}" appBoxRow>
                 <label for="defaultUriMatch">{{'defaultUriMatchDetection' | i18n}}</label>
                 <select id="defaultUriMatch" name="DefaultUriMatch" [(ngModel)]="defaultUriMatch"
                     (change)="saveDefaultUriMatch()">
@@ -38,7 +38,7 @@
     </div>
     <div class="box" *ngIf="showClearClipboard">
         <div class="box-content">
-            <div class="box-content-row" appBoxRow>
+            <div class="box-content-row" appA11yTitle="{{'tip_clearClipboard' | i18n}}" appBoxRow>
                 <label for="clearClipboard">{{'clearClipboard' | i18n}}</label>
                 <select id="clearClipboard" name="ClearClipboard" [(ngModel)]="clearClipboard"
                     (change)="saveClearClipboard()">
@@ -50,7 +50,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableAutoTotpCopy' | i18n}}" appBoxRow>
                 <label for="totp">{{'disableAutoTotpCopy' | i18n}}</label>
                 <input id="totp" type="checkbox" (change)="updateAutoTotpCopy()" [(ngModel)]="disableAutoTotpCopy">
             </div>
@@ -59,7 +59,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_dontShowCardsCurrentTab' | i18n}}" appBoxRow>
                 <label for="dontShowCards">{{'dontShowCardsCurrentTab' | i18n}}</label>
                 <input id="dontShowCards" type="checkbox" (change)="updateShowCards()" [(ngModel)]="dontShowCards">
             </div>
@@ -68,7 +68,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_dontShowIdentitiesCurrentTab' | i18n}}" appBoxRow>
                 <label for="dontShowIdentities">{{'dontShowIdentitiesCurrentTab' | i18n}}</label>
                 <input id="dontShowIdentities" type="checkbox" (change)="updateShowIdentities()"
                     [(ngModel)]="dontShowIdentities">
@@ -78,7 +78,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableAddLoginNotification' | i18n}}" appBoxRow>
                 <label for="addlogin-notification-bar">{{'disableAddLoginNotification' | i18n}}</label>
                 <input id="addlogin-notification-bar" type="checkbox" (change)="updateAddLoginNotification()"
                     [(ngModel)]="disableAddLoginNotification">
@@ -88,7 +88,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableChangedPasswordNotification' | i18n}}" appBoxRow>
                 <label for="changedpass-notification-bar">{{'disableChangedPasswordNotification' | i18n}}</label>
                 <input id="changedpass-notification-bar" type="checkbox" (change)="updateChangedPasswordNotification()"
                     [(ngModel)]="disableChangedPasswordNotification">
@@ -98,7 +98,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableContextMenuItem' | i18n}}" appBoxRow>
                 <label for="context-menu">{{'disableContextMenuItem' | i18n}}</label>
                 <input id="context-menu" type="checkbox" (change)="updateDisableContextMenuItem()"
                     [(ngModel)]="disableContextMenuItem">
@@ -108,7 +108,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableFavicon' | i18n}}" appBoxRow>
                 <label for="favicon">{{'disableFavicon' | i18n}}</label>
                 <input id="favicon" type="checkbox" (change)="updateDisableFavicon()" [(ngModel)]="disableFavicon">
             </div>
@@ -117,7 +117,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row box-content-row-checkbox" appBoxRow>
+            <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_disableBadgeCounter' | i18n}}" appBoxRow>
                 <label for="badge">{{'disableBadgeCounter' | i18n}}</label>
                 <input id="badge" type="checkbox" (change)="updateDisableBadgeCounter()" [(ngModel)]="disableBadgeCounter">
             </div>
@@ -126,7 +126,7 @@
     </div>
     <div class="box">
         <div class="box-content">
-            <div class="box-content-row" appBoxRow>
+            <div class="box-content-row" appA11yTitle="{{'tip_theme' | i18n}}" appBoxRow>
                 <label for="theme">{{'theme' | i18n}}</label>
                 <select id="theme" name="Theme" [(ngModel)]="theme" (change)="saveTheme()">
                     <option *ngFor="let o of themeOptions" [ngValue]="o.value">{{o.name}}</option>

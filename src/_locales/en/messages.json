@@ -1684,5 +1684,154 @@
   },
   "dateParsingError": {
     "message": "There was an error saving your deletion and expiration dates."
+  },
+  "tip_regeneratePassword": {
+    "message": "Discard this password and generate a new one"
+  },
+  "tip_copyPassword": {
+    "message": "Send this password on the clipboard"
+  },
+  "tip_clearPasswordHistory": {
+    "message": "Clear previous passwords history"
+  },
+  "tip_chooseLength": {
+    "message": "Password length between 5 to 126 characters"
+  },
+  "tip_uppercaseLetters": {
+    "message": "Use uppercase letters"
+  },
+  "tip_lowercaseLetters": {
+    "message": "Use lowercase letters"
+  },
+  "tip_numbers": {
+    "message": "Use numbers"
+  },
+  "tip_numWords": {
+    "message": "Number of words in the passphrase"
+  },
+  "tip_minNumbers": {
+    "message": "Minimum amount of numbers in the password"
+  },
+  "tip_minSpecial": {
+    "message": "Minimum amount of special characters (!@#$%^&*)"
+  },
+  "tip_specialCharacters": {
+    "message": "Contain the following special characters $CHARS$",
+    "placeholders": {
+      "chars": {
+        "content": "$1",
+        "example": "!@#$%^&*"
+      }
+    }
+  },  
+  "tip_avoidAmbChar": {
+    "message": "Letters that may be mistaken for others, e.g. i and l"
+  },
+  "tip_currentTab": {
+    "message": "Info about forms and passwords in the current tab"
+  },
+  "tip_myVault": {
+    "message": "Password and form secure vault"
+  },
+  "tip_send": {
+    "message": "Set and send 'sends'"
+  },
+  "tip_passGen": {
+    "message": "Secure password generator"
+  },
+  "tip_settings": {
+    "message": "Settings tab"
+  },
+  "tip_vaultTimeout": {
+    "message": "How long Bitwarden can be inactive before timing-out"
+  },
+  "tip_vaultTimeoutAction": {
+    "message": "What Bitwarden will do once it times-out"
+  },
+  "tip_unlockWithPin": {
+    "message": "Enable and set a PIN"
+  },
+  "tip_unlockWithBiometrics": {
+    "message": "Enable and set a biometric"
+  },
+  "tip_lockNow": {
+    "message": "Lock Bitwarden immediately"
+  },
+  "tip_twoStepLogin": {
+    "message": "Enable and set two-step authentication"
+  },
+  "tip_premiumMembership": {
+    "message": "Set up your premium membership"
+  },
+  "tip_changeMasterPassword": {
+    "message": "Change master password, you'll be redirect to Bitwarden's site"
+  },
+  "tip_fingerprintPhrase": {
+    "message": "This phrase is used to identify a user account"
+  },
+  "tip_logOut": {
+    "message": "Log out of Bitwarden immediately"
+  },
+  "tip_importItems": {
+    "message": "Import saved login and form information. You'll be redirected to Bitwarden's site"
+  },
+  "tip_exportVault": {
+    "message": "Export saved login and form information"
+  },
+  "tip_shareVault": {
+    "message": "Share saved login and form information"
+  },
+  "tip_bitWebVault": {
+    "message": "Open web vault in another tab"
+  },
+  "tip_options": {
+    "message": "Other option (e.g. autofill and clipboard)"
+  },
+  "tip_about": {
+    "message": "Information about the browser extention"
+  },
+  "tip_helpFeedback": {
+    "message": "Go to help page on Bitwarden's site"
+  },
+  "tip_rateExtension": {
+    "message": "Go to extention page to rate"
+  },
+  "tip_enableAutoFillOnPageLoad": {
+    "message": "Enable autofill of saved login information"
+  },
+  "tip_defaultUriMatchDetection": {
+    "message": "Policy to match URL from login information and website when autofilling"
+  },
+  "tip_clearClipboard": {
+    "message": "Policy to clear the temporary storage area for data that the user wants to copy from one place to another"
+  },
+  "tip_disableAutoTotpCopy": {
+    "message": "Disable the Time-based One-Time Password"
+  },
+  "tip_dontShowCardsCurrentTab": {
+    "message": "Hide items content of 'Current Tab' page"
+  },
+  "tip_dontShowIdentitiesCurrentTab": {
+    "message": "Hide identities content of 'Current Tab' page"
+  },
+  "tip_disableAddLoginNotification": {
+    "message": "Disable notifications to add a password"
+  },
+  "tip_disableChangedPasswordNotification": {
+    "message": "Disable notifications to update a password"
+  },
+  "tip_disableContextMenuItem": {
+    "message": "Disable Bitwarden's menus from appearing automatically"
+  },
+  "tip_disableFavicon": {
+    "message": "Disable website icons in vault"
+  },  
+  "tip_disableBadgeCounter": {
+    "message": "Disable indicator for how many saved logins you have for the current page"
+  },
+  "tip_theme": {
+    "message": "Change the application's color theme."
   }
+
+
 }
