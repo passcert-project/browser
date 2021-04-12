@@ -1805,7 +1805,7 @@
     "message": "Policy to match URL from login information and website when autofilling"
   },
   "tip_clearClipboard": {
-    "message": "Policy to clear the temporary storage for data (clipboard) used to copy/paste"
+    "message": "The clipboard is the temporary storage used to copy/paste text"
   },
   "tip_disableAutoTotpCopy": {
     "message": "Disable the Time-based One-Time Password"
@@ -1848,7 +1848,7 @@
     "message": "The text will be hidden until the user toggles its visibility"
   },
   "tip_sendShareDesc": {
-    "message": "The clipboard is a temporary storage used to copy/paste text"
+    "message": "The clipboard is the temporary storage used to copy/paste text"
   },
   "tip_sendDisableDesc": {
     "message": "Toggle access to the send",
