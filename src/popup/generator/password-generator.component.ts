@@ -32,6 +32,8 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
             this.cipherState = addEditCipherInfo.cipher;
         }
         this.showSelect = this.cipherState != null;
+        console.log("@ pw generator component -> ", this.options);
+        console.log("hasRestraints ", this.websiteHasConstraints);
     }
 
     select() {

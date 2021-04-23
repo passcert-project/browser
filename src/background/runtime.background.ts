@@ -26,6 +26,9 @@ import { Utils } from 'jslib/misc/utils';
 
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { PolicyType } from 'jslib/enums/policyType';
+import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
+
+
 
 export default class RuntimeBackground {
     private runtime: any;
@@ -39,7 +42,8 @@ export default class RuntimeBackground {
         private analytics: Analytics, private notificationsService: NotificationsService,
         private systemService: SystemService, private vaultTimeoutService: VaultTimeoutService,
         private environmentService: EnvironmentService, private policyService: PolicyService,
-        private userService: UserService) {
+        private userService: UserService,
+        private passwordGenerationService: PasswordGenerationService) {
 
         // onInstalled listener must be wired up before anything else, so we do it in the ctor
         chrome.runtime.onInstalled.addListener((details: any) => {
@@ -175,6 +179,13 @@ export default class RuntimeBackground {
                         msg.code + '&state=' + msg.state);
                 }
                 catch { }
+                break;
+            case 'bgGenerateRequirementsCompliantPassword':
+                console.log("I received this ", msg);
+                console.log("From this sender: ", sender);
+
+                this.passwordRequirementsTranslator(msg.policyValue);
+
                 break;
             default:
                 break;
@@ -462,5 +473,60 @@ export default class RuntimeBackground {
             }
         }
         return true;
+    }
+
+
+    private async passwordRequirementsTranslator(policyAnnotation: string): Promise<any> {
+        console.log("Entered the Password Requirements Translator");
+        switch (policyAnnotation) {
+            case '1c8':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '1c10':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '1c12':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '1c16':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '2c12':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '3c8':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                const RequirementOptions = {
+                    websiteConstraints: true, websiteOptions: {
+                        length: 30,
+                        ambiguous: true,
+                        number: true,
+                        minNumber: 10,
+                        uppercase: true,
+                        minUppercase: 3,
+                        lowercase: true,
+                        minLowercase: 6,
+                        special: true,
+                        minSpecial: 5,
+                        type: 'password',
+                        numWords: 3, // passphrase exclusive
+                        wordSeparator: '-', // passphrase exclusive
+                        capitalize: false, // passphrase exclusive
+                        includeNumber: false, // passphrase exclusive
+                    }
+                };
+                this.passwordGenerationService.setWebsitePasswordConstraints(RequirementOptions);
+                break;
+            case '3c12':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '3c16':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+            case '4c8':
+                console.log("I received the password requirement -> ", policyAnnotation);
+                break;
+        }
+
     }
 }

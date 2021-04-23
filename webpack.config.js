@@ -139,6 +139,7 @@ const config = {
         'content/shortcuts': './src/content/shortcuts.ts',
         'content/sso': './src/content/sso.ts',
         'notification/bar': './src/notification/bar.js',
+        'content/passwordRestraints': './src/content/passwordRestraints.ts'
     },
     optimization: {
         minimize: false,
