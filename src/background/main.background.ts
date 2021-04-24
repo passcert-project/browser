@@ -86,7 +86,7 @@ import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
 
 import { AutofillService as AutofillServiceAbstraction } from '../services/abstractions/autofill.service';
-
+import { PasswordRulesParserService as PasswordRulesParserServiceAbstraction } from 'jslib/abstractions/passwordRulesParser.service';
 export default class MainBackground {
     messagingService: MessagingServiceAbstraction;
     storageService: StorageServiceAbstraction;
@@ -124,6 +124,7 @@ export default class MainBackground {
     analytics: Analytics;
     popupUtilsService: PopupUtilsService;
     sendService: SendServiceAbstraction;
+    passwordRulesParserService: PasswordRulesParserServiceAbstraction;
 
     onUpdatedRan: boolean;
     onReplacedRan: boolean;
@@ -246,7 +247,7 @@ export default class MainBackground {
         this.runtimeBackground = new RuntimeBackground(this, this.autofillService, this.cipherService,
             this.platformUtilsService as BrowserPlatformUtilsService, this.storageService, this.i18nService,
             this.analytics, this.notificationsService, this.systemService, this.vaultTimeoutService,
-            this.environmentService, this.policyService, this.userService, this.passwordGenerationService);
+            this.environmentService, this.policyService, this.userService, this.passwordGenerationService, this.passwordRulesParserService);
         this.nativeMessagingBackground = new NativeMessagingBackground(this.storageService, this.cryptoService, this.cryptoFunctionService,
             this.vaultTimeoutService, this.runtimeBackground, this.i18nService, this.userService, this.messagingService, this.appIdService);
         this.commandsBackground = new CommandsBackground(this, this.passwordGenerationService,

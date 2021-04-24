@@ -27,6 +27,7 @@ import { Utils } from 'jslib/misc/utils';
 import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusType';
 import { PolicyType } from 'jslib/enums/policyType';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
+import { PasswordRulesParserService } from 'jslib/abstractions/passwordRulesParser.service';
 
 
 
@@ -43,7 +44,8 @@ export default class RuntimeBackground {
         private systemService: SystemService, private vaultTimeoutService: VaultTimeoutService,
         private environmentService: EnvironmentService, private policyService: PolicyService,
         private userService: UserService,
-        private passwordGenerationService: PasswordGenerationService) {
+        private passwordGenerationService: PasswordGenerationService,
+        private passwordRulesParserService: PasswordRulesParserService) {
 
         // onInstalled listener must be wired up before anything else, so we do it in the ctor
         chrome.runtime.onInstalled.addListener((details: any) => {
@@ -496,6 +498,9 @@ export default class RuntimeBackground {
                 break;
             case '3c8':
                 console.log("I received the password requirement -> ", policyAnnotation);
+
+                this.passwordRulesParserService.parsePasswordRules(policyAnnotation);
+
                 const RequirementOptions = {
                     websiteConstraints: true, websiteOptions: {
                         length: 30,
