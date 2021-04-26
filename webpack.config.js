@@ -133,7 +133,7 @@ const config = {
         'content/shortcuts': './src/content/shortcuts.ts',
         'content/message_handler': './src/content/message_handler.ts',
         'notification/bar': './src/notification/bar.js',
-        'content/passwordRestraints': './src/content/passwordRestraints.ts'
+        'content/websitePasswordRules': './src/content/websitePasswordRules.ts'
     },
     optimization: {
         minimize: false,

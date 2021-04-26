@@ -186,7 +186,7 @@ export default class RuntimeBackground {
                 }
                 catch { }
                 break;
-            case 'bgGenerateRequirementsCompliantPassword':
+            case 'bgWebsitePasswordRules':
                 console.log("I received this ", msg);
                 console.log("From this sender: ", sender);
 
