@@ -25,6 +25,7 @@ import { CryptoFunctionService } from 'jslib/abstractions/cryptoFunction.service
 import { EnvironmentService } from 'jslib/abstractions/environment.service';
 import { EventService } from 'jslib/abstractions/event.service';
 import { ExportService } from 'jslib/abstractions/export.service';
+import { FileUploadService } from 'jslib/abstractions/fileUpload.service';
 import { FolderService } from 'jslib/abstractions/folder.service';
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
@@ -52,8 +53,6 @@ import { ConstantsService } from 'jslib/services/constants.service';
 import { SearchService } from 'jslib/services/search.service';
 import { StateService } from 'jslib/services/state.service';
 
-import { Analytics } from 'jslib/misc/analytics';
-
 import { PopupSearchService } from './popup-search.service';
 import { PopupUtilsService } from './popup-utils.service';
 
@@ -66,27 +65,19 @@ function getBgService<T>(service: string) {
 
 export const stateService = new StateService();
 export const messagingService = new BrowserMessagingService();
-export const authService = new AuthService(getBgService<CryptoService>('cryptoService')(),
-    getBgService<ApiService>('apiService')(), getBgService<UserService>('userService')(),
-    getBgService<TokenService>('tokenService')(), getBgService<AppIdService>('appIdService')(),
-    getBgService<I18nService>('i18nService')(), getBgService<PlatformUtilsService>('platformUtilsService')(),
-    messagingService, getBgService<VaultTimeoutService>('vaultTimeoutService')(), getBgService<ConsoleLogService>('consoleLogService')());
 export const searchService = new PopupSearchService(getBgService<SearchService>('searchService')(),
-    getBgService<CipherService>('cipherService')(), getBgService<ConsoleLogService>('consoleLogService')());
+    getBgService<CipherService>('cipherService')(), getBgService<ConsoleLogService>('consoleLogService')(),
+    getBgService<I18nService>('i18nService')());
 
 export function initFactory(platformUtilsService: PlatformUtilsService, i18nService: I18nService, storageService: StorageService,
     popupUtilsService: PopupUtilsService): Function {
     return async () => {
         if (!popupUtilsService.inPopup(window)) {
             window.document.body.classList.add('body-full');
-        } else {
-            if (window.screen.availHeight < 600) {
-                window.document.body.classList.add('body-xs');
-            } else if (window.screen.availHeight <= 800) {
-                window.document.body.classList.add('body-sm');
-            }
-
-            document.body.style.setProperty('height',`${window.innerHeight}px`,'important');
+        } else if (window.screen.availHeight < 600) {
+            window.document.body.classList.add('body-xs');
+        } else if (window.screen.availHeight <= 800) {
+            window.document.body.classList.add('body-sm');
         }
 
         if (BrowserApi.getBackgroundPage() != null) {
@@ -98,7 +89,7 @@ export function initFactory(platformUtilsService: PlatformUtilsService, i18nServ
 
             let theme = await storageService.get<string>(ConstantsService.themeKey);
             if (theme == null) {
-                theme = platformUtilsService.getDefaultSystemTheme();
+                theme = await platformUtilsService.getDefaultSystemTheme();
 
                 platformUtilsService.onDefaultSystemThemeChange(sysTheme => {
                     window.document.documentElement.classList.remove('theme_light', 'theme_dark');
@@ -107,16 +98,6 @@ export function initFactory(platformUtilsService: PlatformUtilsService, i18nServ
             }
             window.document.documentElement.classList.add('locale_' + i18nService.translationLocale);
             window.document.documentElement.classList.add('theme_' + theme);
-
-            authService.init();
-
-            const analytics = new Analytics(window, () => BrowserApi.gaFilter(), null, null, null, () => {
-                const bgPage = BrowserApi.getBackgroundPage();
-                if (bgPage == null || bgPage.bitwardenMain == null) {
-                    throw new Error('Cannot resolve background page main.');
-                }
-                return bgPage.bitwardenMain;
-            });
         }
     };
 }
@@ -133,10 +114,11 @@ export function initFactory(platformUtilsService: PlatformUtilsService, i18nServ
         PopupUtilsService,
         BroadcasterService,
         { provide: MessagingService, useValue: messagingService },
-        { provide: AuthServiceAbstraction, useValue: authService },
+        { provide: AuthServiceAbstraction, useFactory: getBgService<AuthService>('authService'), deps: [] },
         { provide: StateServiceAbstraction, useValue: stateService },
         { provide: SearchServiceAbstraction, useValue: searchService },
         { provide: AuditService, useFactory: getBgService<AuditService>('auditService'), deps: [] },
+        { provide: FileUploadService, useFactory: getBgService<FileUploadService>('fileUploadService'), deps: [] },
         { provide: CipherService, useFactory: getBgService<CipherService>('cipherService'), deps: [] },
         {
             provide: CryptoFunctionService,

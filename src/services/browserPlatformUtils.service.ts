@@ -6,8 +6,6 @@ import { DeviceType } from 'jslib/enums/deviceType';
 import { MessagingService } from 'jslib/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
-import { AnalyticsIds } from 'jslib/misc/analytics';
-
 const DialogPromiseExpiration = 600000; // 10 minutes
 
 export default class BrowserPlatformUtilsService implements PlatformUtilsService {
@@ -15,7 +13,6 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
 
     private showDialogResolves = new Map<number, { resolve: (value: boolean) => void, date: Date }>();
     private deviceCache: DeviceType = null;
-    private analyticsIdCache: string = null;
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private messagingService: MessagingService,
@@ -82,15 +79,6 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
         return false;
     }
 
-    analyticsId(): string {
-        if (this.analyticsIdCache) {
-            return this.analyticsIdCache;
-        }
-
-        this.analyticsIdCache = (AnalyticsIds as any)[this.getDevice()];
-        return this.analyticsIdCache;
-    }
-
     async isViewOpen(): Promise<boolean> {
         if (await BrowserApi.isPopupOpen()) {
             return true;
@@ -122,16 +110,12 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
         BrowserApi.downloadFile(win, blobData, blobOptions, fileName);
     }
 
-    getApplicationVersion(): string {
-        return BrowserApi.getApplicationVersion();
+    getApplicationVersion(): Promise<string> {
+        return Promise.resolve(BrowserApi.getApplicationVersion());
     }
 
-    supportsU2f(win: Window): boolean {
-        if (win != null && (win as any).u2f != null) {
-            return true;
-        }
-
-        return this.isChrome() || this.isOpera() || this.isVivaldi() || this.isEdge();
+    supportsWebAuthn(win: Window): boolean {
+        return (typeof(PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {
@@ -162,14 +146,6 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
         });
         return new Promise<boolean>(resolve => {
             this.showDialogResolves.set(dialogId, { resolve: resolve, date: new Date() });
-        });
-    }
-
-    eventTrack(action: string, label?: string, options?: any) {
-        this.messagingService.send('analyticsEventTrack', {
-            action: action,
-            label: label,
-            options: options,
         });
     }
 
@@ -293,8 +269,11 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
     }
 
     async supportsBiometric() {
-        const isUnsuportedFirefox = this.isFirefox() && parseInt((await browser.runtime.getBrowserInfo()).version.split('.')[0], 10) < 87;
-        return !isUnsuportedFirefox && !this.isSafari();
+        if (this.isFirefox()) {
+            return parseInt((await browser.runtime.getBrowserInfo()).version.split('.')[0], 10) >= 87;
+        }
+
+        return true;
     }
 
     authenticateBiometric() {
@@ -315,8 +294,8 @@ export default class BrowserPlatformUtilsService implements PlatformUtilsService
         return false;
     }
 
-    getDefaultSystemTheme() {
-        return this.prefersColorSchemeDark.matches ? 'dark' : 'light';
+    getDefaultSystemTheme(): Promise<'light' | 'dark'> {
+        return Promise.resolve(this.prefersColorSchemeDark.matches ? 'dark' : 'light');
     }
 
     onDefaultSystemThemeChange(callback: ((theme: 'light' | 'dark') => unknown)) {
