@@ -28,6 +28,9 @@ import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusTy
 import { PolicyType } from 'jslib/enums/policyType';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PasswordRulesParserService } from 'jslib/abstractions/passwordRulesParser.service';
+import { RuleData } from 'jslib/models/data/passwordRules/ruleData';
+import { CustomCharacterData } from 'jslib/models/data/passwordRules/customCharacterData';
+import { NamedCharacterData } from 'jslib/models/data/passwordRules/namedCharacterData';
 
 
 
@@ -479,59 +482,17 @@ export default class RuntimeBackground {
 
 
     private async passwordRequirementsTranslator(policyAnnotation: string): Promise<any> {
-        console.log("Entered the Password Requirements Translator");
-        switch (policyAnnotation) {
-            case '1c8':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '1c10':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '1c12':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '1c16':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '2c12':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '3c8':
-                console.log("I received the password requirement -> ", policyAnnotation);
+        console.log("these are the rules -> ", policyAnnotation);
+        let a: RuleData[];
 
-                this.passwordRulesParserService.parsePasswordRules(policyAnnotation);
+        a = this.passwordRulesParserService.parsePasswordRules(policyAnnotation);
+        console.log("i got this -> ", a);
 
-                const RequirementOptions = {
-                    websiteConstraints: true, websiteOptions: {
-                        length: 30,
-                        ambiguous: true,
-                        number: true,
-                        minNumber: 10,
-                        uppercase: true,
-                        minUppercase: 3,
-                        lowercase: true,
-                        minLowercase: 6,
-                        special: true,
-                        minSpecial: 5,
-                        type: 'password',
-                        numWords: 3, // passphrase exclusive
-                        wordSeparator: '-', // passphrase exclusive
-                        capitalize: false, // passphrase exclusive
-                        includeNumber: false, // passphrase exclusive
-                    }
-                };
-                this.passwordGenerationService.setWebsitePasswordConstraints(RequirementOptions);
-                break;
-            case '3c12':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '3c16':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-            case '4c8':
-                console.log("I received the password requirement -> ", policyAnnotation);
-                break;
-        }
+        let passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(a);
 
+        console.log("REQUIREMENTS => ", passwordRequirements);
+
+        this.passwordGenerationService.setWebsitePasswordConstraints(passwordRequirements);
     }
+
 }

@@ -86,7 +86,9 @@ import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
 
 import { AutofillService as AutofillServiceAbstraction } from '../services/abstractions/autofill.service';
+
 import { PasswordRulesParserService as PasswordRulesParserServiceAbstraction } from 'jslib/abstractions/passwordRulesParser.service';
+import { PasswordRulesParserService } from 'jslib/services/passwordRulesParser.service';
 export default class MainBackground {
     messagingService: MessagingServiceAbstraction;
     storageService: StorageServiceAbstraction;
@@ -237,7 +239,7 @@ export default class MainBackground {
                 BrowserApi.reloadExtension(forceWindowReload ? window : null);
                 return Promise.resolve();
             });
-
+        this.passwordRulesParserService = new PasswordRulesParserService();
         // Other fields
         this.isSafari = this.platformUtilsService.isSafari();
         this.sidebarAction = this.isSafari ? null : (typeof opr !== 'undefined') && opr.sidebarAction ?
