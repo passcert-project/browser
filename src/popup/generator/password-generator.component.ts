@@ -43,7 +43,9 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
     }
 
     lengthChanged() {
+        console.log("length will be changed -> ", this.websitePasswordOptions);
         document.getElementById('length').focus();
+        console.log("length changed -> ", this.websitePasswordOptions);
     }
 
     close() {

@@ -492,11 +492,14 @@ export default class RuntimeBackground {
         a = this.passwordRulesParserService.parsePasswordRules(policyAnnotation);
         console.log("i got this -> ", a);
 
+        // new policy, reset possible left over values
+        this.passwordRulesParserService.resetRulesReferences();
+
         let passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(a);
 
         console.log("REQUIREMENTS => ", passwordRequirements);
 
-        this.passwordGenerationService.setWebsitePasswordConstraints(passwordRequirements);
+        this.passwordGenerationService.setWebsitePasswordRules(passwordRequirements);
     }
 
 }
