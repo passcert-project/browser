@@ -33,7 +33,6 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
         }
         this.showSelect = this.cipherState != null;
         console.log("@ pw generator component -> ", this.options);
-        console.log("hasRestraints ", this.websiteHasConstraints);
     }
 
     select() {
@@ -43,9 +42,7 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
     }
 
     lengthChanged() {
-        console.log("length will be changed -> ", this.websitePasswordOptions);
         document.getElementById('length').focus();
-        console.log("length changed -> ", this.websitePasswordOptions);
     }
 
     close() {

@@ -188,8 +188,6 @@ export default class RuntimeBackground {
                 break;
             case 'bgWebsitePasswordRules':
                 console.log("I received this ", msg);
-                console.log("From this sender: ", sender);
-
                 this.passwordRequirementsTranslator(msg.policyValue);
 
             case 'webAuthnResult':

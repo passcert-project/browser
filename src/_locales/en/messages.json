@@ -1701,6 +1701,9 @@
     "message": "One or more organization policies are affecting your Send options."
   },
   "smartpassword": {
-    "message": "Smartpassword"
+    "message": "Smart Password"
+  },
+  "smartpasswordRulesInEffect": {
+    "message": "One or more website rules are affecting your generator settings."
   }
 }
