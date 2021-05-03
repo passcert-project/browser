@@ -182,7 +182,7 @@
         </div>
     </div>
     <div class="box" *ngIf="cipher.login && cipher.login.hasUris">
-        <div class="box-content">
+        <div class="box-content" appA11yTitle="{{'tip_uri' | i18n}}">
             <div class="box-content-row box-content-row-flex" *ngFor="let u of cipher.login.uris; let i = index">
                 <div class="row-main">
                     <span class="row-label" *ngIf="!u.isWebsite">{{'uri' | i18n}}</span>
@@ -268,7 +268,7 @@
     </div>
     <div class="box list">
         <div class="box-content single-line">
-            <a class="box-content-row" href="#" appStopClick appBlurClick (click)="fillCipher()"
+            <a class="box-content-row" href="#" appA11yTitle="{{'tip_autoFill' | i18n}}" appStopClick appBlurClick (click)="fillCipher()"
                 *ngIf="!cipher.isDeleted && !inPopout">
                 <div class="row-main text-primary">
                     <div class="icon text-primary" aria-hidden="true">
@@ -277,7 +277,7 @@
                     <span>{{'autoFill' | i18n}}</span>
                 </div>
             </a>
-            <a class="box-content-row" href="#" appStopClick appBlurClick (click)="fillCipherAndSave()"
+            <a class="box-content-row" href="#" appA11yTitle="{{'tip_autoFillAndSave' | i18n}}" appStopClick appBlurClick (click)="fillCipherAndSave()"
                 *ngIf="!cipher.isDeleted && !inPopout">
                 <div class="row-main text-primary">
                     <div class="icon text-primary" aria-hidden="true">
@@ -286,7 +286,7 @@
                     <span>{{'autoFillAndSave' | i18n}}</span>
                 </div>
             </a>
-            <a class="box-content-row" href="#" appStopClick appBlurClick (click)="clone()"
+            <a class="box-content-row" href="#" appA11yTitle="{{'tip_cloneItem' | i18n}}" appStopClick appBlurClick (click)="clone()"
                 *ngIf="!cipher.organizationId && !cipher.isDeleted">
                 <div class="row-main text-primary">
                     <div class="icon text-primary" aria-hidden="true">
@@ -295,7 +295,7 @@
                     <span>{{'cloneItem' | i18n}}</span>
                 </div>
             </a>
-            <a class="box-content-row" href="#" appStopClick appBlurClick (click)="share()" *ngIf="!cipher.organizationId">
+            <a class="box-content-row" href="#" appA11yTitle="{{'tip_shareItem' | i18n}}" appStopClick appBlurClick (click)="share()" *ngIf="!cipher.organizationId">
                 <div class="row-main text-primary">
                     <div class="icon text-primary" aria-hidden="true">
                         <i class="fa fa-share-alt fa-lg fa-fw"></i>
@@ -311,7 +311,7 @@
                     <span>{{'restoreItem' | i18n}}</span>
                 </div>
             </a>
-            <a class="box-content-row" href="#" appStopClick appBlurClick (click)="delete()">
+            <a class="box-content-row" href="#" appA11yTitle="{{'tip_deleteItem' | i18n}}" appStopClick appBlurClick (click)="delete()">
                 <div class="row-main text-danger">
                     <div class="icon text-danger" aria-hidden="true">
                         <i class="fa fa-trash-o fa-lg fa-fw"></i>

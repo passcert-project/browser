@@ -1835,17 +1835,16 @@
     "message": "Change the application's color theme."
   },
   "tip_addSend": {
-    "message": "A Send is a secure way to transmit sensitive information to anyone",
+    "message": "A Send is a secure way to transmit sensitive information",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
-
+  },
+  "tip_sendHideText": {
+    "message": "When opening the send its content will be hidden until the user toggles its visibility",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "tip_currentAccessCount": {
     "message": "Amount of times this send has been accessed",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
-
-  },
-  "tip_sendHideText": {
-    "message": "The text will be hidden until the user toggles its visibility"
   },
   "tip_sendShareDesc": {
     "message": "The clipboard is the temporary storage used to copy/paste text"
@@ -1853,7 +1852,29 @@
   "tip_sendDisableDesc": {
     "message": "Toggle access to the send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "tip_authenticatorKeyTotp": {
+    "message": "TOTP is a One-time Password used in two-factor authentication"
+  },
+  "tip_autoFill": {
+    "message": "Auto-fill this item"
+  },
+  "tip_autoFillAndSave": {
+    "message": "Auto-fill this item and save URI"
+  },
+  "tip_cloneItem": {
+    "message": "Make a duplicate of this item"
+  },
+  "tip_shareItem": {
+    "message": "Share with members of your organization"
+  },
+  "tip_deleteItem": {
+    "message": "Delete and send item to trash"
+  },
+  "tip_uri": {
+    "message": "URI is an identifier, it can be a website address (URL), a Server IP Address, etc"
   }
+  
 
   
 }

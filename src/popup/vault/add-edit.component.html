@@ -69,7 +69,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="box-content-row" appBoxRow>
+                    <div class="box-content-row" appA11yTitle="{{'tip_authenticatorKeyTotp' | i18n}}" appBoxRow>
                         <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
                         <input id="loginTotp" type="{{cipher.viewPassword ? 'text' : 'password'}}" name="Login.Totp"
                             class="monospaced" [(ngModel)]="cipher.login.totp" appInputVerbatim
