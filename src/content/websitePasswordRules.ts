@@ -10,7 +10,6 @@ document.addEventListener("visibilitychange", event => {
     if (document.visibilityState === "visible") {
         searchDomForPasswordRules();
     }
-
 });
 
 function searchDomForPasswordRules(): void {
@@ -18,7 +17,6 @@ function searchDomForPasswordRules(): void {
 
     // TODO what if there is more than a policy?
     if (policiesFound.length > 0) {
-
         console.log('FOUND -> ', policiesFound);
 
         console.log('FOUND POLICY -> ', policiesFound[0].attributes);
@@ -29,11 +27,17 @@ function searchDomForPasswordRules(): void {
 
         chrome.runtime.sendMessage({
             command: 'bgWebsitePasswordRules',
-            policyValue: policiesFound[0].attributes.getNamedItem('passwordrules').value,
-            sender: 'passwordRestraints',
+            rulesValue: policiesFound[0].attributes.getNamedItem('passwordrules').value,
+            sender: 'websitePasswordRules',
         });
     }
+
     else if (policiesFound.length == 0) {
         console.log("I found no password rules in this site");
+        chrome.runtime.sendMessage({
+            command: 'bgWebsitePasswordRules',
+            rulesValue: 'no-rules',
+            sender: 'websitePasswordRules',
+        });
     }
 }

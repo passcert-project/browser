@@ -188,7 +188,12 @@ export default class RuntimeBackground {
                 break;
             case 'bgWebsitePasswordRules':
                 console.log("I received this ", msg);
-                this.passwordRequirementsTranslator(msg.policyValue);
+                if (msg.rulesValue === 'no-rules') {
+                    this.readRulesFromRepo();
+                } else {
+                    //TODO
+                    this.passwordRequirementsTranslator(msg.rulesValue);
+                }
 
             case 'webAuthnResult':
                 let vaultUrl2 = this.environmentService.getWebVaultUrl();
@@ -498,6 +503,53 @@ export default class RuntimeBackground {
         console.log("REQUIREMENTS => ", passwordRequirements);
 
         this.passwordGenerationService.setWebsitePasswordRules(passwordRequirements);
+    }
+
+    private readRulesFromRepo(): any {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            var tab = tabs[0];
+            console.log("TAB => ", tab);
+            var url = new URL(tab.url);
+            console.log("url -> ", url);
+            var domain = url.hostname.startsWith('www.') ? url.hostname.replace('www.', '') : url.hostname;
+            console.log("domain -> ", domain);
+            var knownDomains = this.readKnownDomains();
+
+            // check if the domain has rules in the github repo
+            var req = new XMLHttpRequest();
+            var text: any;
+            req.open('GET', 'https://raw.githubusercontent.com/apple/password-manager-resources/main/quirks/password-rules.json', false);
+            req.send(null);
+            if (req.status == 200) {
+                if (req.responseText.includes(domain)) {
+                    console.log("I GOT THE DOMAIN: ", domain);
+                    text = JSON.parse(req.responseText);
+                    console.log("HERE ARE THE RULES: ", text[domain]);
+                    return text[domain];
+                } else {
+                    console.log("This website doesn't have rules in the repo");
+                }
+            }
+            else {
+                console.log("Could not read from github repo.");
+            }
+
+        });
+    }
+
+    private readKnownDomains(): string {
+        var domains = new XMLHttpRequest();
+        domains.open('GET', 'https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat', false);
+        domains.send(null);
+        const removeComments = /\/\*[\s\S]*?\*\/|\/\/.*/g;
+        const removeExtraNewLines = /\n\n+/g
+        if (domains.status == 200) {
+            let noComments = domains.responseText.replace(removeComments, '');
+            let noExtraLines = noComments.replace(removeExtraNewLines, '');
+            console.log("DOMAINS -> ", noExtraLines);
+
+            return noExtraLines;
+        }
     }
 
 }
