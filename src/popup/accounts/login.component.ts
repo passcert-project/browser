@@ -12,6 +12,7 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { SyncService } from 'jslib/abstractions/sync.service';
 
 import { LoginComponent as BaseLoginComponent } from 'jslib/angular/components/login.component';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-login',
@@ -33,5 +34,9 @@ export class LoginComponent extends BaseLoginComponent {
 
     settings() {
         this.router.navigate(['environment']);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
     }
 }

@@ -10,6 +10,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StateService } from 'jslib/abstractions/state.service';
 
 import { RegisterComponent as BaseRegisterComponent } from 'jslib/angular/components/register.component';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-register',
@@ -22,5 +23,9 @@ export class RegisterComponent extends BaseRegisterComponent {
         platformUtilsService: PlatformUtilsService, passwordGenerationService: PasswordGenerationService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
     }
 }

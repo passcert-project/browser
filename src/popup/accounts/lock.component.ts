@@ -14,6 +14,7 @@ import { VaultTimeoutService } from 'jslib/abstractions/vaultTimeout.service';
 
 import { LockComponent as BaseLockComponent } from 'jslib/angular/components/lock.component';
 import Swal from 'sweetalert2';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-lock',
@@ -58,5 +59,8 @@ export class LockComponent extends BaseLockComponent {
         await super.unlockBiometric();
 
         Swal.close();
+    }
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
     }
 }

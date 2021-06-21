@@ -1699,5 +1699,20 @@
   },
   "sendOptionsPolicyInEffect": {
     "message": "One or more organization policies are affecting your Send options."
+  },
+  "formalVerification": {
+    "message": "Formal Verification"
+  },
+  "formalVerificationGenerator": {
+    "message": "PassCert formally verifies that the password generator is truly random. This means if an attacker wants to discover a password, it can only do so by trying all possible passwords."
+  },
+  "tip_formalVerification": {
+    "message": "This feature is formally verified, click the icon to learn more"
+  },
+  "formalVerificationPasswordSecurity": {
+    "message": "When a password is saved in memory PassCert, through formal verification, will make sure that it is hidden. This way, if an attacker has access to memory, it will not be able to see the password in plain-text. To use a password we need do access it and then show it to the site where we want to login. PassCert will guarantee that when a password is used it stays exposed the minimum time possible, reducing the chance of it being leaked."
+  },
+  "formalVerificationMasterPasswordSecurity": {
+    "message": "PassCert's will guarantee that the master password (i.e. the password used to unlock the PM itself) is never accessible to other programs. Other Password Managers may make it available in memory where other programs may access it. Passcert is formally verified not to do so."
   }
 }

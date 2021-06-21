@@ -11,6 +11,7 @@ import { CipherView } from 'jslib/models/view/cipherView';
 import {
     PasswordGeneratorComponent as BasePasswordGeneratorComponent,
 } from 'jslib/angular/components/password-generator.component';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-password-generator',
@@ -42,6 +43,10 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
 
     lengthChanged() {
         document.getElementById('length').focus();
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationGenerator(this.platformUtilsService, this.i18nService);
     }
 
     close() {

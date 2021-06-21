@@ -217,6 +217,17 @@ app-vault-icon {
     display: flex;
 }
 
+.fv-icon {
+    margin: 0 auto;
+    width: 14.8px;
+    height: 18px;
+    background-size: 14.8px 18px;
+    @include themify($themes) {
+        background-image: url('../images/fv-icon.png');
+    }
+}
+    
+
 .logo-image {
     margin: 0 auto;
     width: 142px;

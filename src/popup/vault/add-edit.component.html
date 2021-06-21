@@ -47,6 +47,9 @@
                                 [disabled]="!cipher.viewPassword">
                         </div>
                         <div class="action-buttons">
+                            <a class="row-btn" href="#" (click)="formalVerificationIcon()" appStopClick >
+                                <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+                            </a>
                             <button type="button" #checkPasswordBtn class="row-btn btn" appBlurClick
                                 appA11yTitle="{{'checkPassword' | i18n}}" (click)="checkPassword()"
                                 [appApiAction]="checkPasswordPromise" [disabled]="checkPasswordBtn.loading"
@@ -112,6 +115,9 @@
                                 name="Card.Code" [(ngModel)]="cipher.card.code" appInputVerbatim>
                         </div>
                         <div class="action-buttons">
+                            <a class="row-btn" href="#" (click)="formalVerificationIcon()" appStopClick >
+                                <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+                            </a>
                             <a class="row-btn" href="#" appStopClick appBlurClick
                                 appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleCardCode()">
                                 <i class="fa fa-lg" aria-hidden="true"
@@ -322,6 +328,9 @@
                             *ngIf="f.type === fieldType.Boolean" appTrueFalseValue trueValue="true" falseValue="false">
                         <div class="action-buttons"
                             *ngIf="f.type === fieldType.Hidden && (cipher.viewPassword || f.newField)">
+                            <a class="row-btn" href="#" (click)="formalVerificationIcon()" appStopClick >
+                                <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+                            </a>
                             <a class="row-btn" href="#" appStopClick appBlurClick
                                 appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)">
                                 <i class="fa fa-lg" aria-hidden="true"

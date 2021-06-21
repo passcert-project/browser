@@ -27,6 +27,7 @@ import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
 import { ViewComponent as BaseViewComponent } from 'jslib/angular/components/view.component';
 import { BrowserApi } from '../../browser/browserApi';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 import { AutofillService } from '../../services/abstractions/autofill.service';
 import { PopupUtilsService } from '../services/popup-utils.service';
 
@@ -204,6 +205,10 @@ export class ViewComponent extends BaseViewComponent {
 
     close() {
         this.location.back();
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
     }
 
     private async loadPageDetails() {

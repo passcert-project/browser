@@ -8,6 +8,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 
 import { ExportComponent as BaseExportComponent } from 'jslib/angular/components/export.component';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-export',
@@ -18,6 +19,10 @@ export class ExportComponent extends BaseExportComponent {
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, private router: Router) {
         super(cryptoService, i18nService, platformUtilsService, exportService, eventService, window);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
     }
 
     protected saved() {

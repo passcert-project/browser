@@ -18,6 +18,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib/abstractions/policy.service';
 import { StateService } from 'jslib/abstractions/state.service';
 import { UserService } from 'jslib/abstractions/user.service';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 import { PopupUtilsService } from '../services/popup-utils.service';
 
@@ -173,5 +174,9 @@ export class AddEditComponent extends BaseAddEditComponent {
     allowOwnershipOptions(): boolean {
         return (!this.editMode || this.cloneMode) && this.ownershipOptions
             && (this.ownershipOptions.length > 1 || !this.allowPersonal);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
     }
 }

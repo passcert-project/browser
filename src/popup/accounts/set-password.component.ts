@@ -18,6 +18,7 @@ import { UserService } from 'jslib/abstractions/user.service';
 import {
     SetPasswordComponent as BaseSetPasswordComponent,
 } from 'jslib/angular/components/set-password.component';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-set-password',
@@ -61,5 +62,9 @@ export class SetPasswordComponent extends BaseSetPasswordComponent {
             default:
                 return this.masterPasswordScore != null ? this.i18nService.t('weak') : null;
         }
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
     }
 }

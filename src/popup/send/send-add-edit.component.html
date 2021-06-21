@@ -257,6 +257,9 @@
                                 class="monospaced" [(ngModel)]="password" appInputVerbatim [readonly]="disableSend">
                         </div>
                         <div class="action-buttons" *ngIf="!disableSend">
+                            <a class="row-btn" href="#" (click)="formalVerificationIcon()" appStopClick >
+                                <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+                            </a>
                             <a class="row-btn" href="#" appStopClick appBlurClick
                                 appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePasswordVisible()">
                                 <i class="fa fa-lg" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"
