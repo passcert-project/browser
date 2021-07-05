@@ -1,0 +1,114 @@
+<header>
+    <div class="left">
+        <a routerLink="/tabs/settings">
+            <span class="header-icon"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+            <span>{{'back' | i18n}}</span>
+        </a>
+    </div>
+    <div class="center">
+        <span class="title">{{'faq' | i18n}}</span>
+    </div>
+    <div class="right"></div>
+</header>
+<content>
+    <app-callout type="info">
+        {{ "faqinformation" | i18n }}
+        {{ "visitwebsite" | i18n }}
+        <a type="info" appBlurClick appStopClick (click)="visitWebsite()" style="cursor: pointer;" >
+            {{'website' | i18n}}
+        </a>
+    </app-callout>
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable" (click)="qBitwardenSeeMyPasswords = !qBitwardenSeeMyPasswords" appBoxRow>
+                <span><b>{{'question' | i18n}}</b>: {{'qBitwardenSeeMyPasswords' | i18n}}</span>
+                <i *ngIf="!qBitwardenSeeMyPasswords" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qBitwardenSeeMyPasswords" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+            <div *ngIf="qBitwardenSeeMyPasswords" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aBitwardenSeeMyPasswords' | i18n}}
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qSecureExtension = !qSecureExtension" appBoxRow>
+                <span><b>{{'question' | i18n}}</b>: {{'qSecureExtension' | i18n}}</span>
+                <i *ngIf="!qSecureExtension" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qSecureExtension" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qSecureExtension" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aSecureExtension' | i18n}}
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qMasterPasswordLocal = !qMasterPasswordLocal">
+                <span><b>{{'question' | i18n}}</b>: {{'qMasterPasswordLocal' | i18n}}</span>
+                <i *ngIf="!qMasterPasswordLocal" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qMasterPasswordLocal" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qMasterPasswordLocal" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aMasterPasswordLocal' | i18n}}
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qWhatIsFormalVerification = !qWhatIsFormalVerification">
+                <span><b>{{'question' | i18n}}</b>: {{'qWhatIsFormalVerification' | i18n}}</span>
+                <i *ngIf="!qWhatIsFormalVerification" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qWhatIsFormalVerification" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qWhatIsFormalVerification" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aWhatIsFormalVerification' | i18n}}
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qFormalVerificationSecurity = !qFormalVerificationSecurity">
+                <span><b>{{'question' | i18n}}</b>: {{'qFormalVerificationSecurity' | i18n}}</span>
+                <i *ngIf="!qFormalVerificationSecurity" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qFormalVerificationSecurity" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qFormalVerificationSecurity" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aFormalVerificationSecurity' | i18n}}
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qFormalVerificationFeatures = !qFormalVerificationFeatures">
+                <span><b>{{'question' | i18n}}</b>: {{'qFormalVerificationFeatures' | i18n}}</span>
+                <i *ngIf="!qFormalVerificationFeatures" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qFormalVerificationFeatures" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qFormalVerificationFeatures" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aFormalVerificationFeatures' | i18n}}
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-content">
+            <div class="box-header-faq-expandable " (click)="qWhyShouldITrust = !qWhyShouldITrust">
+                <span><b>{{'question' | i18n}}</b>: {{'qFormalVerificationFeatures' | i18n}}</span>
+                <i *ngIf="!qWhyShouldITrust" class="fa fa-chevron-down fa-sm icon"></i>
+                <i *ngIf="qWhyShouldITrust" class="fa fa-chevron-up fa-sm icon"></i>
+            </div>
+
+            <div *ngIf="qWhyShouldITrust" class="box-footer">
+                <b>{{'answer' | i18n}}</b>: {{'aWhyShouldITrust' | i18n}}
+            </div>
+        </div>
+    </div>
+
+</content>

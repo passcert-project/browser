@@ -25,6 +25,7 @@ import { PasswordGeneratorHistoryComponent } from './generator/password-generato
 import { PasswordGeneratorComponent } from './generator/password-generator.component';
 
 import { PrivateModeComponent } from './private-mode.component';
+import { FaqComponent } from './settings/faq.component';
 import { TabsComponent } from './tabs.component';
 
 import { ExcludedDomainsComponent } from './settings/excluded-domains.component';
@@ -190,6 +191,12 @@ const routes: Routes = [
         component: FoldersComponent,
         canActivate: [AuthGuardService],
         data: { state: 'folders' },
+    },
+    {
+        path: 'faq',
+        component: FaqComponent,
+        canActivate: [AuthGuardService],
+        data: { state: 'faq' },
     },
     {
         path: 'add-folder',

@@ -333,6 +333,10 @@ export class SettingsComponent implements OnInit {
         this.router.navigate(['/export']);
     }
 
+    faq() {
+        BrowserApi.createNewTab('https://help.bitwarden.com/');
+    }
+
     help() {
         BrowserApi.createNewTab('https://help.bitwarden.com/');
     }
