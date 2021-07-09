@@ -1,5 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { GuidedTour, GuidedTourService, Orientation } from 'ngx-guided-tour';
+
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
@@ -8,20 +10,76 @@ import { StateService } from 'jslib/abstractions/state.service';
 
 import { CipherView } from 'jslib/models/view/cipherView';
 
+import { Router } from '@angular/router';
 import {
     PasswordGeneratorComponent as BasePasswordGeneratorComponent,
 } from 'jslib/angular/components/password-generator.component';
+import { Globals } from '../globals';
 
 @Component({
     selector: 'app-password-generator',
     templateUrl: 'password-generator.component.html',
 })
 export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
+
+    generatorTour: GuidedTour = {
+        tourId: 'purchases-tour',
+        useOrb: false,
+        completeCallback: () => this.continueTour(this.router),
+        skipCallback: () => this.continueTour(this.router),
+        steps: [
+            {
+                content: 'Welcome to the Password Generator',
+            },
+            {
+                selector: '.password-block',
+                content: 'Here you can see the currently generated password',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-regeneratePassword',
+                content: 'After generating the password you may want to regenerate it and make a new one',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-copyPassword',
+                content: 'You can also copy the password to the clipboard. By doing this you will be able to past it wherever you want',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-settings',
+                content: 'Here you change an array of settings that affect the generated password',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-generator-length',
+                content: 'Like the size of the password',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-generator-numbers',
+                content: 'If you want to include numbers',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-generator-special',
+                content: 'Or use special characters',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            },
+            {
+                content: 'Let\'s move on to the settings',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+        ],
+    };
     private cipherState: CipherView;
 
     constructor(passwordGenerationService: PasswordGenerationService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, private stateService: StateService,
-        private location: Location) {
+        i18nService: I18nService, private stateService: StateService, private globals: Globals,
+        private location: Location,  private router: Router,
+        private guidedTourService: GuidedTourService) {
         super(passwordGenerationService, platformUtilsService, i18nService, window);
     }
 
@@ -32,6 +90,22 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
             this.cipherState = addEditCipherInfo.cipher;
         }
         this.showSelect = this.cipherState != null;
+        this.startTour();
+
+
+    }
+
+    continueTour(router: Router) {
+        router.navigate(['/tabs/settings']);
+    }
+
+    startTour() {
+        if (this.globals.tourGenerator) {
+            setTimeout(() => {
+                this.guidedTourService.startTour(this.generatorTour);
+            }, 300);
+        }
+        this.globals.tourGenerator = false;
     }
 
     select() {

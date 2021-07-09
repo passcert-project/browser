@@ -1699,5 +1699,11 @@
   },
   "sendOptionsPolicyInEffect": {
     "message": "One or more organization policies are affecting your Send options."
+  },
+  "startTour": {
+    "message": "Start Tour"
+  },
+  "startTourConfirmation": {
+    "message": "You'll be redirected to the start of the tour. Do you want to start the tour?"
   }
 }

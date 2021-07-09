@@ -8,7 +8,7 @@
     <div class="right"></div>
 </header>
 <content>
-    <div class="box list">
+    <div class="box list setting-tour">
         <div class="box-header">{{'manage' | i18n}}</div>
         <div class="box-content single-line">
             <a class="box-content-row box-content-row-flex text-default" routerLink="/folders">
@@ -25,10 +25,10 @@
             </a>
         </div>
     </div>
-    <div class="box list">
+    <div class="box list tour-security">
         <div class="box-header">{{'security' | i18n}}</div>
         <div class="box-content single-line">
-            <div class="box-content-row display-block" appBoxRow>
+            <div class="box-content-row display-block tour-vaultTimeout" appBoxRow>
                 <label for="vaultTimeout">{{'vaultTimeout' | i18n}}</label>
                 <select #vaultTimeoutSelect id="vaultTimeout" name="VaultTimeouts" [ngModel]="vaultTimeout"
                     (ngModelChange)="saveVaultTimeout($event)">
@@ -50,7 +50,7 @@
                 <label for="biometric">{{'unlockWithBiometrics' | i18n}}</label>
                 <input id="biometric" type="checkbox" (change)="updateBiometric()" [(ngModel)]="biometric">
             </div>
-            <a class="box-content-row box-content-row-flex text-default" href="#" appStopClick appBlurClick
+            <a class="box-content-row box-content-row-flex text-default tour-lockNow" href="#" appStopClick appBlurClick
                 (click)="lock()">
                 <div class="row-main">{{'lockNow' | i18n}}</div>
                 <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
@@ -132,6 +132,11 @@
                 <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
             </a>
             <a class="box-content-row box-content-row-flex text-default" href="#" appStopClick appBlurClick
+               (click)="startTour()">
+                <div class="row-main">{{'startTour' | i18n}}</div>
+                <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
+            </a>
+            <a class="box-content-row box-content-row-flex text-default" href="#" appStopClick appBlurClick
                 (click)="rate()">
                 <div class="row-main">{{'rateExtension' | i18n}}</div>
                 <i class="fa fa-chevron-right fa-lg row-sub-icon" aria-hidden="true"></i>
@@ -139,4 +144,5 @@
         </div>
         <div class="box-footer">{{'rateExtensionDesc' | i18n}}</div>
     </div>
+    <ngx-guided-tour></ngx-guided-tour>
 </content>

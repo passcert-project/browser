@@ -13,6 +13,7 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
+import {BrowserApi} from "../../browser/browserApi";
 
 @Component({
     selector: 'app-options',
@@ -37,7 +38,7 @@ export class OptionsComponent implements OnInit {
     clearClipboardOptions: any[];
 
     constructor(private messagingService: MessagingService, private storageService: StorageService,
-        private stateService: StateService, private totpService: TotpService, i18nService: I18nService) {
+        private stateService: StateService, private totpService: TotpService, private i18nService: I18nService, private platformUtilsService: PlatformUtilsService) {
         this.themeOptions = [
             { name: i18nService.t('default'), value: null },
             { name: i18nService.t('light'), value: 'light' },
@@ -150,4 +151,5 @@ export class OptionsComponent implements OnInit {
     async saveClearClipboard() {
         await this.storageService.save(ConstantsService.clearClipboardKey, this.clearClipboard);
     }
+
 }
