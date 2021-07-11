@@ -29,4 +29,13 @@ export default class FormalVerificationInfo {
             // BrowserApi.createNewTab('https://help.bitwarden.com/article/setup-two-step-login/');
         }
     }
+
+    static formalVerificationPasswordClipboard(platformUtilsService: PlatformUtilsService, i18nService: I18nService ) {
+        const confirmed = platformUtilsService.showDialog(
+            i18nService.t('formalVerificationClipboard'), i18nService.t('formalVerificationClipboardTitle'),
+            i18nService.t('ok'), i18nService.t('learnMore'));
+        if (confirmed) {
+            // BrowserApi.createNewTab('https://help.bitwarden.com/article/setup-two-step-login/');
+        }
+    }
 }

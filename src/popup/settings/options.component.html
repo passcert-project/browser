@@ -39,7 +39,13 @@
     <div class="box" *ngIf="showClearClipboard">
         <div class="box-content">
             <div class="box-content-row" appBoxRow>
-                <label for="clearClipboard">{{'clearClipboard' | i18n}}</label>
+                <div class="clipboard">
+                    <label for="clearClipboard">{{'clearClipboard' | i18n}}</label>
+                    <a class="row-btn" href="#" appStopClick appBlurClick (click)="formalVerificationIcon()" appA11yTitle="{{'tip_formalVerification' | i18n}}">
+                        <div class="fv-icon"></div>
+                    </a>
+                </div>
+
                 <select id="clearClipboard" name="ClearClipboard" [(ngModel)]="clearClipboard"
                     (change)="saveClearClipboard()">
                     <option *ngFor="let o of clearClipboardOptions" [ngValue]="o.value">{{o.name}}</option>

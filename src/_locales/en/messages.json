@@ -1720,5 +1720,11 @@
   },
   "formalVerificationMasterPasswordSecurity": {
     "message": "Other Password Managers may make it available in memory where other programs may access it. Passcert is formally verified not to do so."
+  },
+  "formalVerificationClipboardTitle": {
+    "message": "PassCert guarantees that the clipboard is cleared"
+  },
+  "formalVerificationClipboard": {
+    "message": "When a password is copied to the clipboard, PassCert guarantees through formal verification that it will be cleared from memory."
   }
 }

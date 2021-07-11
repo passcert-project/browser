@@ -68,6 +68,11 @@
                 background-color: initial !important;
             }
         }
+
+        .clipboard {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .box-footer {

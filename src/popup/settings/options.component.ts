@@ -13,6 +13,7 @@ import { StorageService } from 'jslib/abstractions/storage.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 
 import { ConstantsService } from 'jslib/services/constants.service';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 @Component({
     selector: 'app-options',
@@ -36,8 +37,9 @@ export class OptionsComponent implements OnInit {
     clearClipboard: number;
     clearClipboardOptions: any[];
 
-    constructor(private messagingService: MessagingService, private storageService: StorageService,
-        private stateService: StateService, private totpService: TotpService, i18nService: I18nService) {
+    constructor(private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+                private stateService: StateService, private totpService: TotpService,
+                private messagingService: MessagingService, private storageService: StorageService) {
         this.themeOptions = [
             { name: i18nService.t('default'), value: null },
             { name: i18nService.t('light'), value: 'light' },
@@ -141,6 +143,10 @@ export class OptionsComponent implements OnInit {
     async saveTheme() {
         await this.storageService.save(ConstantsService.themeKey, this.theme);
         window.setTimeout(() => window.location.reload(), 200);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordClipboard(this.platformUtilsService, this.i18nService);
     }
 
     async saveDefaultUriMatch() {
