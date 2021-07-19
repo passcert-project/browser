@@ -1699,5 +1699,17 @@
   },
   "sendOptionsPolicyInEffect": {
     "message": "One or more organization policies are affecting your Send options."
+  },
+  "importVaultConfirmation": {
+    "message": "Bitwarden allows you to import login and form information to your vault. Would you like to visit the bitwarden.com website to learn more?"
+  },
+  "webVaultConfirmation": {
+    "message": "The Bitwarden Web Vault provides important functions like setting up Two-step Login. Do you want to visit the website now?"
+  },
+  "helpFeedbackConfirmation": {
+    "message": "Would you like to visit the bitwarden.com website to learn more?"
+  },
+  "rateExtensionConfirmation": {
+    "message": "Would you like to visit your browser's website to rate this extension?"
   }
 }

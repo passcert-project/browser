@@ -318,23 +318,38 @@ export class SettingsComponent implements OnInit {
     }
 
     async webVault() {
-        let url = this.environmentService.getWebVaultUrl();
-        if (url == null) {
-            url = 'https://vault.bitwarden.com';
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('webVaultConfirmation'), this.i18nService.t('bitWebVault'),
+            this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        if (confirmed) {
+            let url = this.environmentService.getWebVaultUrl();
+            if (url == null) {
+                url = 'https://vault.bitwarden.com';
+            }
+            BrowserApi.createNewTab(url);
         }
-        BrowserApi.createNewTab(url);
     }
 
-    import() {
-        BrowserApi.createNewTab('https://help.bitwarden.com/article/import-data/');
+    async import() {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('importVaultConfirmation'), this.i18nService.t('importItems'),
+            this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        if (confirmed) {
+            BrowserApi.createNewTab('https://help.bitwarden.com/article/import-data/');
+        }
     }
 
     export() {
         this.router.navigate(['/export']);
     }
 
-    help() {
-        BrowserApi.createNewTab('https://help.bitwarden.com/');
+    async help() {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('helpFeedbackConfirmation'), this.i18nService.t('helpFeedback'),
+            this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        if (confirmed) {
+            BrowserApi.createNewTab('https://help.bitwarden.com/');
+        }
     }
 
     about() {
@@ -381,8 +396,13 @@ export class SettingsComponent implements OnInit {
         }
     }
 
-    rate() {
-        const deviceType = this.platformUtilsService.getDevice();
-        BrowserApi.createNewTab((RateUrls as any)[deviceType]);
+    async rate() {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('rateExtensionConfirmation'), this.i18nService.t('rateExtension'),
+            this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        if (confirmed) {
+            const deviceType = this.platformUtilsService.getDevice();
+            BrowserApi.createNewTab((RateUrls as any)[deviceType]);
+        }
     }
 }
