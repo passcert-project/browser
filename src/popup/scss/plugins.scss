@@ -204,11 +204,19 @@ $fa-font-path: "~font-awesome/fonts";
         button {
             margin-left: 10px;
             @extend .btn;
-
+            
             &.swal2-confirm {
                 @extend .btn, .primary;
                 font-weight: bold;
             }
+
+            &.swal2-cancel {
+                @extend .btn;
+                @include themify($themes) {
+                    color: themed('textColor');
+                }
+            }
+            
         }
     }
 }
