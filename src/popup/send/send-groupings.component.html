@@ -22,7 +22,7 @@
         <ng-container *ngIf="loaded">
             <i class="fa fa-frown-o fa-4x"></i>
             <p>{{'noItemsInList' | i18n}}</p>
-            <button (click)="addSend()" class="btn block primary link"
+            <button (click)="addSend()" appA11yTitle="{{'tip_addSend' | i18n}}" class="btn block primary link"
                 [disabled]="disableSend">{{'addSend' | i18n}}</button>
         </ng-container>
     </div>

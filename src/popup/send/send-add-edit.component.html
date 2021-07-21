@@ -87,7 +87,7 @@
                 {{'sendTextDesc' | i18n}}
             </div>
             <div class="box-content">
-                <div class="box-content-row box-content-row-checkbox" appBoxRow>
+                <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_sendHideText' | i18n}}" appBoxRow>
                     <label for="hideText">{{'sendHideText' | i18n}}</label>
                     <input id="hideText" type="checkbox" name="HideText" [(ngModel)]="send.text.hidden"
                         [disabled]="disableSend">
@@ -101,7 +101,7 @@
             </div>
             <div class="box-content">
                 <!-- Copy Link on Save -->
-                <div class="box-content-row box-content-row-checkbox" appBoxRow>
+                <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_sendShareDesc' | i18n}}" appBoxRow>
                     <label for="copyOnSave">{{'sendShareDesc' | i18n}}</label>
                     <input id="copyOnSave" type="checkbox" name="CopyOnSave" [(ngModel)]="copyLink"
                         [disabled]="disableSend">
@@ -239,7 +239,7 @@
             <!-- Current Access Count -->
             <div class="box" *ngIf="editMode">
                 <div class="box-content">
-                    <div class="box-content-row" appBoxRow>
+                    <div class="box-content-row" appA11yTitle="{{'tip_currentAccessCount' | i18n}}" appBoxRow>
                         <label for="currentAccessCount">{{'currentAccessCount' | i18n}}</label>
                         <input id="currentAccessCount" readonly type="text" name="CurrentAccessCount"
                             [(ngModel)]="send.accessCount">
@@ -298,7 +298,7 @@
             <!-- Disable Send -->
             <div class="box">
                 <div class="box-content">
-                    <div class="box-content-row box-content-row-checkbox" appBoxRow>
+                    <div class="box-content-row box-content-row-checkbox" appA11yTitle="{{'tip_sendDisableDesc' | i18n}}" appBoxRow>
                         <label for="disableSend">{{'sendDisableDesc' | i18n}}</label>
                         <input id="disableSend" type="checkbox" name="DisableSend" [(ngModel)]="send.disabled"
                             [disabled]="disableSend">
