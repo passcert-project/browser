@@ -25,6 +25,7 @@ import { PasswordGeneratorHistoryComponent } from './generator/password-generato
 import { PasswordGeneratorComponent } from './generator/password-generator.component';
 
 import { AppComponent } from './app.component';
+
 import { PrivateModeComponent } from './private-mode.component';
 import { FaqComponent } from './settings/faq.component';
 import { TabsComponent } from './tabs.component';
@@ -76,6 +77,8 @@ import { SendListComponent } from './components/send-list.component';
 import { CalloutComponent } from 'jslib/angular/components/callout.component';
 import { IconComponent } from 'jslib/angular/components/icon.component';
 
+import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
+
 import {
     CurrencyPipe,
     DatePipe,
@@ -117,6 +120,7 @@ import localeUk from '@angular/common/locales/uk';
 import localeVi from '@angular/common/locales/vi';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
+import { Globals } from './globals';
 
 registerLocaleData(localeBe, 'be');
 registerLocaleData(localeBg, 'bg');
@@ -165,6 +169,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ToasterModule.forRoot(),
         InfiniteScrollModule,
         DragDropModule,
+        GuidedTourModule.forRoot(),
     ],
     declarations: [
         A11yTitleDirective,
@@ -228,6 +233,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
     providers: [
         CurrencyPipe,
         DatePipe,
+        Globals,
+        GuidedTourService,
     ],
     bootstrap: [AppComponent],
 })

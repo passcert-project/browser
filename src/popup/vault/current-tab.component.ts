@@ -32,6 +32,8 @@ import { AutofillService } from '../../services/abstractions/autofill.service';
 import { PopupUtilsService } from '../services/popup-utils.service';
 
 import { Utils } from 'jslib/misc/utils';
+import {GuidedTour, GuidedTourService, Orientation} from "ngx-guided-tour";
+import {Globals} from "../globals";
 
 const BroadcasterSubscriptionId = 'CurrentTabComponent';
 
@@ -51,6 +53,55 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     searchTypeSearch = false;
     loaded = false;
 
+    currentTabTour: GuidedTour = {
+        tourId: 'purchases-tour',
+        completeCallback: () => this.continueTour(this.router),
+        skipCallback: () => this.continueTour(this.router),
+        useOrb: false,
+        steps: [
+            {
+                content: 'Welcome, let\'s start the tour',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.current-tab-tour',
+                content: 'Here you can see the credentials saved for the current website',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.info-tour',
+                content: 'Here you can see the credentials saved for the current website',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.no-login-info-tour',
+                content: 'Right now you have none saved for the current website...',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.add-a-login-tour',
+                content: 'but you can a new one...',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.search-tour',
+                content: 'or search for the login ou credential you want here',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                content: 'Let\'s move on to the Password Generator',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+        ],
+    };
+
     private totpCode: string;
     private totpTimeout: number;
     private loadedTimeout: number;
@@ -59,8 +110,8 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     constructor(private platformUtilsService: PlatformUtilsService, private cipherService: CipherService,
         private popupUtilsService: PopupUtilsService, private autofillService: AutofillService,
         private toasterService: ToasterService, private i18nService: I18nService, private router: Router,
-        private ngZone: NgZone, private broadcasterService: BroadcasterService,
-        private changeDetectorRef: ChangeDetectorRef, private syncService: SyncService,
+        private ngZone: NgZone, private broadcasterService: BroadcasterService,  private guidedTourService: GuidedTourService,
+        private changeDetectorRef: ChangeDetectorRef, private syncService: SyncService, private globals: Globals,
         private searchService: SearchService, private storageService: StorageService) {
     }
 
@@ -108,6 +159,13 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
         window.setTimeout(() => {
             document.getElementById('search').focus();
         }, 100);
+
+        if (this.globals.tourCurrentTab) {
+            setTimeout(() => {
+                this.guidedTourService.startTour(this.currentTabTour);
+            }, 400);
+            this.globals.tourCurrentTab = false;
+        }
     }
 
     ngOnDestroy() {
@@ -117,6 +175,10 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
 
     async refresh() {
         await this.load();
+    }
+
+    continueTour(router: Router) {
+        router.navigate(['/tabs/generator']);
     }
 
     addCipher() {

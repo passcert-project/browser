@@ -1,3 +1,4 @@
+import { GuidedTour, GuidedTourService, Orientation } from 'ngx-guided-tour';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 
 import {
@@ -22,6 +23,7 @@ import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { StorageService } from 'jslib/abstractions/storage.service';
 import { UserService } from 'jslib/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib/abstractions/vaultTimeout.service';
+import { Globals } from '../globals';
 import { PopupUtilsService } from '../services/popup-utils.service';
 
 const RateUrls = {
@@ -54,16 +56,56 @@ export class SettingsComponent implements OnInit {
     supportsBiometric: boolean;
     biometric: boolean = false;
     previousVaultTimeout: number = null;
+    doTour: boolean = false;
+    settingsTour: GuidedTour = {
+        tourId: 'purchases-tour',
+        useOrb: false,
+        steps: [
+            {
+                content: 'Welcome to Settings',
+            },
+            {
+                selector: '.setting-tour',
+                content: 'Here you can manage and sync you passwords',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.tour-security',
+                content: 'In this section you can change security settings',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.tour-vaultTimeout',
+                content: 'Like when you want your vault to time out',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.tour-lockNow',
+                content: 'Our locking you vault right away',
+                orientation: Orientation.Top,
+                useHighlightPadding: true,
+            },
+            {
+                content: 'Enjoy bitwarden',
+            },
+        ],
+    };
 
     constructor(private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private vaultTimeoutService: VaultTimeoutService, private storageService: StorageService,
         public messagingService: MessagingService, private router: Router,
-        private environmentService: EnvironmentService, private cryptoService: CryptoService,
-        private userService: UserService, private popupUtilsService: PopupUtilsService) {
+        private environmentService: EnvironmentService, private cryptoService: CryptoService, private globals: Globals,
+        private userService: UserService, private popupUtilsService: PopupUtilsService,
+        private guidedTourService: GuidedTourService) {
     }
 
     async ngOnInit() {
         const showOnLocked = !this.platformUtilsService.isFirefox() && !this.platformUtilsService.isSafari();
+
+
 
         this.vaultTimeouts = [
             { name: this.i18nService.t('immediately'), value: 0 },
@@ -105,6 +147,13 @@ export class SettingsComponent implements OnInit {
 
         this.supportsBiometric = await this.platformUtilsService.supportsBiometric();
         this.biometric = await this.vaultTimeoutService.isBiometricLockSet();
+
+        if (this.globals.tourSettings) {
+            setTimeout(() => {
+                this.guidedTourService.startTour(this.settingsTour);
+            }, 300);
+            this.globals.tourSettings = false;
+        }
     }
 
     async saveVaultTimeout(newValue: number) {
@@ -404,6 +453,19 @@ export class SettingsComponent implements OnInit {
         if (confirmed) {
             const deviceType = this.platformUtilsService.getDevice();
             BrowserApi.createNewTab((RateUrls as any)[deviceType]);
+        }
+    }
+
+
+    async startTour() {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('startTourConfirmation'), this.i18nService.t('startTour'),
+            this.i18nService.t('yes'), this.i18nService.t('no'));
+        if (confirmed) {
+            this.globals.tourSettings = true;
+            this.globals.tourGenerator = true;
+            this.globals.tourCurrentTab = true;
+            await this.router.navigate(['/tabs/current']);
         }
     }
 }

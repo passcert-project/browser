@@ -157,4 +157,5 @@ export class OptionsComponent implements OnInit {
     async saveClearClipboard() {
         await this.storageService.save(ConstantsService.clearClipboardKey, this.clearClipboard);
     }
+
 }

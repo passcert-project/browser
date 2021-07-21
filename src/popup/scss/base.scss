@@ -1,5 +1,6 @@
 @import "variables.scss";
-
+@import "guided-tour.scss";
+@import '../../../node_modules/ngx-guided-tour/scss/guided-tour-base-theme.scss';
 * {
     box-sizing: border-box;
     padding: 0;

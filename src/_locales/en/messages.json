@@ -2011,5 +2011,11 @@
   },
   "rateExtensionConfirmation": {
     "message": "Would you like to visit your browser's website to rate this extension?"
+  },
+  "startTour": {
+    "message": "Start Tour"
+  },
+  "startTourConfirmation": {
+    "message": "You'll be redirected to the start of the tour. Do you want to start the tour?"
   }
 }

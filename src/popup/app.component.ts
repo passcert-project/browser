@@ -58,11 +58,12 @@ export class AppComponent implements OnInit {
     private lastActivity: number = null;
 
     constructor(private toasterService: ToasterService, private storageService: StorageService,
-        private broadcasterService: BroadcasterService, private authService: AuthService,
-        private i18nService: I18nService, private router: Router,
-        private stateService: StateService, private messagingService: MessagingService,
-        private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone,
-        private sanitizer: DomSanitizer, private platformUtilsService: PlatformUtilsService) { }
+                private broadcasterService: BroadcasterService, private authService: AuthService,
+                private i18nService: I18nService, private router: Router,
+                private stateService: StateService, private messagingService: MessagingService,
+                private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone,
+                private sanitizer: DomSanitizer, private platformUtilsService: PlatformUtilsService) {
+    }
 
     ngOnInit() {
         if (BrowserApi.getBackgroundPage() == null) {
@@ -248,4 +249,9 @@ export class AppComponent implements OnInit {
             confirmed: confirmed.value,
         });
     }
+
+
 }
+
+
+
