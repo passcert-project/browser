@@ -32,8 +32,8 @@ import { AutofillService } from '../../services/abstractions/autofill.service';
 import { PopupUtilsService } from '../services/popup-utils.service';
 
 import { Utils } from 'jslib/misc/utils';
-import {GuidedTour, GuidedTourService, Orientation} from "ngx-guided-tour";
-import {Globals} from "../globals";
+import { GuidedTour, GuidedTourService, Orientation } from 'ngx-guided-tour';
+import { Globals } from '../globals';
 
 const BroadcasterSubscriptionId = 'CurrentTabComponent';
 
