@@ -1980,7 +1980,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "tip_authenticatorKeyTotp": {
-    "message": "TOTP is a One-time Password used in two-factor authentication"
+    "message": "TOTP is a single user password used in two-factor authentication"
   },
   "tip_autoFill": {
     "message": "Auto-fill this item"
