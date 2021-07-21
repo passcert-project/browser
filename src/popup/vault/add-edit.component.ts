@@ -176,7 +176,4 @@ export class AddEditComponent extends BaseAddEditComponent {
             && (this.ownershipOptions.length > 1 || !this.allowPersonal);
     }
 
-    formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
-    }
 }

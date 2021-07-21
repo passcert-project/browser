@@ -2,6 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UriMatchType } from 'jslib/enums/uriMatchType';
 
@@ -37,9 +38,9 @@ export class OptionsComponent implements OnInit {
     clearClipboard: number;
     clearClipboardOptions: any[];
 
-    constructor(private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+    constructor( private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
                 private stateService: StateService, private totpService: TotpService,
-                private messagingService: MessagingService, private storageService: StorageService) {
+                private messagingService: MessagingService, private storageService: StorageService, protected router: Router) {
         this.themeOptions = [
             { name: i18nService.t('default'), value: null },
             { name: i18nService.t('light'), value: 'light' },
@@ -145,8 +146,8 @@ export class OptionsComponent implements OnInit {
         window.setTimeout(() => window.location.reload(), 200);
     }
 
-    formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationPasswordClipboard(this.platformUtilsService, this.i18nService);
+    async formalVerificationIcon() {
+        await FormalVerificationInfo.formalVerificationPasswordClipboard(this.platformUtilsService, this.i18nService, this.router);
     }
 
     async saveDefaultUriMatch() {

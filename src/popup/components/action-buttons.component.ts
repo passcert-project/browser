@@ -4,6 +4,7 @@ import {
     Input,
     Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -17,6 +18,7 @@ import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
 import { TotpService } from 'jslib/abstractions/totp.service';
 import { UserService } from 'jslib/abstractions/user.service';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
 
 import { PopupUtilsService } from '../services/popup-utils.service';
 
@@ -35,7 +37,7 @@ export class ActionButtonsComponent {
 
     constructor(private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private eventService: EventService,
-        private totpService: TotpService, private userService: UserService) { }
+        private totpService: TotpService, private userService: UserService,private router: Router) { }
 
     async ngOnInit() {
         this.userHasPremiumAccess = await this.userService.canAccessPremium();
@@ -74,5 +76,9 @@ export class ActionButtonsComponent {
 
     view() {
         this.onView.emit(this.cipher);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService, this.router);
     }
 }

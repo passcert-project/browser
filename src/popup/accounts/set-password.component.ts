@@ -65,6 +65,6 @@ export class SetPasswordComponent extends BaseSetPasswordComponent {
     }
 
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService, this.router);
     }
 }

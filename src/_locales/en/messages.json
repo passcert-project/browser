@@ -83,7 +83,7 @@
     "message": "Copy Security Code"
   },
   "autoFill": {
-    "message": "Auto-fill"
+    "message": "Click to auto-fill"
   },
   "generatePasswordCopied": {
     "message": "Generate Password (copied)"
@@ -282,7 +282,7 @@
     "message": "Launch"
   },
   "website": {
-    "message": "Website"
+    "message": "website"
   },
   "toggleVisibility": {
     "message": "Toggle Visibility"
@@ -1726,5 +1726,89 @@
   },
   "formalVerificationClipboard": {
     "message": "When a password is copied to the clipboard, PassCert guarantees through formal verification that it will be cleared from memory."
+  },
+  "faq": {
+    "message": "FAQ"
+  },
+  "question": {
+    "message": "Question"
+  },
+  "answer": {
+    "message": "A"
+  },
+  "qBitwardenSeeMyPasswords": {
+    "message": "Can Bitwarden see my passwords?"
+  },
+  "aBitwardenSeeMyPasswords": {
+    "message": "No. Your data is fully encrypted and/or hashed before ever leaving your local device, so no one from the Bitwarden team can ever see, read, or reverse engineer to get to your real data. Bitwarden servers only store encrypted and hashed data. For more information about how your data is encrypted, see Encryption."
+  },
+  "qSecureExtension": {
+    "message": "How does Bitwarden secure Browser extensions?"
+  },
+  "aSecureExtension": {
+    "message": "Extensions are safe to use if they are developed correctly. Due to the nature of how browser extensions work there is always a chance for a bug to arise. We take extreme care and caution when we are developing our extensions and add-ons, we keep our eyes and ears out for anything going on in the industry, and we conduct security audits to keep many eyes on everything."
+  },
+  "qMasterPasswordLocal": {
+    "message": "Is my Bitwarden master password stored locally?"
+  },
+  "aMasterPasswordLocal": {
+    "message": "No.\nWe do not keep the master password stored locally or in memory. Your encryption key (derived from the master password) is kept in memory only while the app is unlocked, which is required to decrypt data in your vault. When the vault is locked, this data is purged from memory."
+  },
+  "qWhatIsFormalVerification": {
+    "message": "What is Formal Verification?"
+  },
+  "aWhatIsFormalVerification": {
+    "message": "Formal verification is a process in which developers prove (mathematically) that a certain part of a program behaves as intended. \nTo say that a feature is formally verified means that it is guaranteed to behave a certain way.\nA concrete example is guaranteeing that the length of generated passwords satisfies the minimum requirements."
+  },
+  "qFormalVerificationSecurity": {
+    "message": "How does formal verification offer security?"
+  },
+  "aFormalVerificationSecurity": {
+    "message": "Formal verification is a process in which developers prove (mathematically) that a certain part of a program behaves as intended. \nTo say that a feature is formally verified means that it is guaranteed to behave a certain way.\nA concrete example is guaranteeing that the length of generated passwords satisfies the minimum requirements."
+  },
+  "qFormalVerificationFeatures": {
+    "message": "What features are formally verified?"
+  },
+  "aFormalVerificationFeatures": {
+    "message": "The password generator, the password vault, the copy to clipboard feature and the security of the master password."
+  },
+  "qWhyShouldITrust": {
+    "message": "Why should I trust this application with my passwords?"
+  },
+  "aWhyShouldITrust": {
+    "message": "You can trust us for a few reasons:\n\n    Bitwarden is open source software. All of our source code is hosted on GitHub and is free for anyone to review. Thousands of software developers follow Bitwarden’s source code projects (and you should too!).\n    Bitwarden is audited by reputable third-party security firms as well as independent security researchers.\n    Bitwarden does not store your passwords. Bitwarden stores encrypted versions of your passwords that only you can unlock.\n    This extension has formally verified features that mathematically guarantee that certain security features work as intended.\n"
+  },
+  "qPasswordGenerator": {
+    "message": "How is the Generator verified?"
+  },
+  "aPasswordGenerator": {
+    "message": "PassCert's password generator guarantees unpredictability: if an attacker wants to discover a password, they can only do so by trying all possible passwords. Moreover, the passwords generated always respect your specification. For example, if you select the option to include numbers, the generated password will necessarily contain numbers."
+  },
+  "qVaultSecurity": {
+    "message": "How are the passwords verified?"
+  },
+  "aVaultSecurity": {
+    "message": "When a password is no longer needed, PassCert guarantees that it is no longer present in memory. Therefore, attackers with access to memory will have no access to secret data. \nTo use a password we need to access it and then submit it to the site where we want to login. PassCert will guarantee that when a password is no longer needed it stays exposed the minimum time possible, reducing the chance of it being leaked.\nThe cryptographic tools used to keep your password secure are also formally verified. We verified the correctness and security of the algorithms used."
+  },
+  "qClipboard": {
+  "message": "How is the clipboard verified?"
+},
+  "aClipboard": {
+    "message": "When a password is copied to the clipboard, PassCert guarantees through formal verification that it will be cleared from memory (within the time frame you choose), reducing the chance of it being leaked."
+  },
+  "faqinformation": {
+    "message": "This section contains Frequently Asked Questions (FAQs) about Bitwarden security and Formal Verification."
+  },
+  "visitwebsite": {
+    "message": "For more information please visit Passcert's website."
+  },
+  "passcertConfirmation": {
+    "message": "Would you like to visit the PassCert's website to learn more?"
+  },
+  "passcert": {
+    "message": "PassCert"
+  },
+  "learnMore": {
+    "message": "Learn more"
   }
 }

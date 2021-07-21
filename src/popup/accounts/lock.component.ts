@@ -61,6 +61,6 @@ export class LockComponent extends BaseLockComponent {
         Swal.close();
     }
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService, this.router);
     }
 }

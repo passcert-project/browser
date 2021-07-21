@@ -26,6 +26,7 @@ import { PasswordGeneratorComponent } from './generator/password-generator.compo
 
 import { AppComponent } from './app.component';
 import { PrivateModeComponent } from './private-mode.component';
+import { FaqComponent } from './settings/faq.component';
 import { TabsComponent } from './tabs.component';
 
 import { ExcludedDomainsComponent } from './settings/excluded-domains.component';
@@ -186,6 +187,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExportComponent,
         FallbackSrcDirective,
         FolderAddEditComponent,
+        FaqComponent,
         FoldersComponent,
         GroupingsComponent,
         HomeComponent,

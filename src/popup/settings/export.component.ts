@@ -22,7 +22,7 @@ export class ExportComponent extends BaseExportComponent {
     }
 
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService, this.router);
     }
 
     protected saved() {

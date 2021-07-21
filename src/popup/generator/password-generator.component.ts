@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { I18nService } from 'jslib/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
@@ -22,7 +23,7 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
 
     constructor(passwordGenerationService: PasswordGenerationService, platformUtilsService: PlatformUtilsService,
         i18nService: I18nService, private stateService: StateService,
-        private location: Location) {
+        private location: Location, private router: Router) {
         super(passwordGenerationService, platformUtilsService, i18nService, window);
     }
 
@@ -46,7 +47,7 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
     }
 
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationGenerator(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationGenerator(this.platformUtilsService, this.i18nService, this.router);
     }
 
     close() {

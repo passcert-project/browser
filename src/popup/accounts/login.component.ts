@@ -37,6 +37,6 @@ export class LoginComponent extends BaseLoginComponent {
     }
 
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationMasterPassword(this.platformUtilsService, this.i18nService, this.router);
     }
 }

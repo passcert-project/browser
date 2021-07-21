@@ -37,7 +37,33 @@
         .icon {
             display: flex;
             align-items: center;
-            margin-left: 5px;
+            margin-right: 2px;
+
+            @include themify($themes) {
+                color: themed('headingColor');
+            }
+        }
+    }
+
+    .box-header-faq-expandable {
+        margin: 5px 10px 5px 10px;
+        // text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
+
+        &:hover, &:focus, &.active {
+            @include themify($themes) {
+                background-color: themed('boxBackgroundHoverColor');
+            }
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
 
             @include themify($themes) {
                 color: themed('headingColor');

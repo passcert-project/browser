@@ -208,7 +208,7 @@ export class ViewComponent extends BaseViewComponent {
     }
 
     formalVerificationIcon() {
-        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService);
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService, this.router);
     }
 
     private async loadPageDetails() {
