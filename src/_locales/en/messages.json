@@ -1728,13 +1728,16 @@
     "message": "When a password is copied to the clipboard, PassCert guarantees through formal verification that it will be cleared from memory."
   },
   "faq": {
-    "message": "FAQ"
+    "message": "FAQ",
+    "description": "Frequently asked questions"
   },
   "question": {
-    "message": "Question"
+    "message": "Question",
+    "description": "'Question in the context of the FAQ"
   },
   "answer": {
-    "message": "A"
+    "message": "A",
+    "description": "'A' as in Answer in the context of the FAQ"
   },
   "qBitwardenSeeMyPasswords": {
     "message": "Can Bitwarden see my passwords?"
