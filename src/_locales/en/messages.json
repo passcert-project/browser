@@ -1802,8 +1802,11 @@
   "faqinformation": {
     "message": "This section contains Frequently Asked Questions (FAQs) about Bitwarden security and Formal Verification."
   },
+  "visit": {
+    "message": "For more information please visit "
+  },
   "visitwebsite": {
-    "message": "For more information please visit Passcert's website."
+    "message": "PassCert's website"
   },
   "passcertConfirmation": {
     "message": "Would you like to visit the PassCert's website to learn more?"
