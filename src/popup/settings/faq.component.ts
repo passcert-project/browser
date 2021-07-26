@@ -37,7 +37,7 @@ export class FaqComponent implements OnInit {
             this.i18nService.t('passcertConfirmation'), this.i18nService.t('formalVerificationClipboardTitle'),
             this.i18nService.t('yes'), this.i18nService.t('cancel'));
         if (confirmed) {
-            BrowserApi.createNewTab('https://help.bitwarden.com/');
+            BrowserApi.createNewTab('https://passcert-project.github.io/');
         }
 
     }
