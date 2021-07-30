@@ -28,9 +28,8 @@ import { OrganizationUserStatusType } from 'jslib/enums/organizationUserStatusTy
 import { PolicyType } from 'jslib/enums/policyType';
 import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
 import { PasswordRulesParserService } from 'jslib/abstractions/passwordRulesParser.service';
-import { RuleData } from 'jslib/models/data/passwordRules/ruleData';
-import { CustomCharacterData } from 'jslib/models/data/passwordRules/customCharacterData';
-import { NamedCharacterData } from 'jslib/models/data/passwordRules/namedCharacterData';
+import { PasswordRulesParser, RuleData } from '@passcert/pwrules-annotations'
+
 
 
 
@@ -490,15 +489,15 @@ export default class RuntimeBackground {
 
     private async passwordRequirementsTranslator(policyAnnotation: string): Promise<any> {
         console.log("these are the rules -> ", policyAnnotation);
-        let a: RuleData[];
-
-        a = this.passwordRulesParserService.parsePasswordRules(policyAnnotation);
-        console.log("i got this -> ", a);
+        let rules: RuleData[];
+        let rulesParser = new PasswordRulesParser();
+        rules = rulesParser.parsePasswordRules(policyAnnotation);
+        console.log("i got this -> ", rules);
 
         // new policy, reset possible left over values
         this.passwordRulesParserService.resetRulesReferences();
 
-        let passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(a);
+        let passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(rules);
 
         console.log("REQUIREMENTS => ", passwordRequirements);
 

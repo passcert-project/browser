@@ -86,6 +86,7 @@
     "@angular/router": "^11.2.11",
     "@microsoft/signalr": "3.1.13",
     "@microsoft/signalr-protocol-msgpack": "3.1.13",
+    "@passcert/pwrules-annotations": "^1.1.0",
     "@types/papaparse": "^5.2.5",
     "angular2-toaster": "^11.0.1",
     "big-integer": "1.6.48",
