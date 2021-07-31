@@ -90,6 +90,7 @@
     "@passcert/pwrules-annotations": "^1.1.0",
     "@types/papaparse": "^5.2.5",
     "angular2-toaster": "^11.0.1",
+    "axios": "^0.21.1",
     "big-integer": "1.6.48",
     "browser-hrtime": "^1.1.8",
     "core-js": "^3.11.0",
