@@ -34,7 +34,7 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
                 content: 'Welcome to the Password Generator',
             },
             {
-                selector: '.password-block',
+                selector: '.tour-password-block',
                 content: 'Here you can see the currently generated password',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
@@ -47,6 +47,23 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
                 selector: '.tour-copyPassword',
                 content: 'You can also copy the password to the clipboard. By doing this you will be able to past it wherever you want',
                 orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-fv-icon',
+                content: 'You know this generator is formally verified because of this icon, and you if you click on it...',
+                orientation: Orientation.Right,
+                closeAction: this.formalVerificationIcon,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-fv-icon',
+                content: '... a pop-up opens explaining how',
+                orientation: Orientation.Right,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-explanation',
+                content: 'In this case .......',
+                orientation: Orientation.Bottom,
+                action: this.formalVerificationIcon,
                 useHighlightPadding: true,
             }, {
                 selector: '.tour-settings',

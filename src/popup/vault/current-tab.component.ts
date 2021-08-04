@@ -54,7 +54,7 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
     loaded = false;
 
     currentTabTour: GuidedTour = {
-        tourId: 'purchases-tour',
+        tourId: 'current-tab-tour',
         completeCallback: () => this.continueTour(this.router),
         skipCallback: () => this.continueTour(this.router),
         useOrb: false,
