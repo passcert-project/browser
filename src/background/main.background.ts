@@ -1,4 +1,5 @@
-import { CipherType } from 'jslib/enums';
+import { CipherType } from 'jslib-common/enums';
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import {
     ApiService,
@@ -9,7 +10,6 @@ import {
     CollectionService,
     ConstantsService,
     ContainerService,
-    CryptoService,
     EnvironmentService,
     FolderService,
     PasswordGenerationService,
@@ -19,17 +19,17 @@ import {
     TokenService,
     TotpService,
     UserService,
-} from 'jslib/services';
-import { ConsoleLogService } from 'jslib/services/consoleLog.service';
-import { EventService } from 'jslib/services/event.service';
-import { ExportService } from 'jslib/services/export.service';
-import { FileUploadService } from 'jslib/services/fileUpload.service';
-import { NotificationsService } from 'jslib/services/notifications.service';
-import { PolicyService } from 'jslib/services/policy.service';
-import { SearchService } from 'jslib/services/search.service';
-import { SendService } from 'jslib/services/send.service';
-import { SystemService } from 'jslib/services/system.service';
-import { WebCryptoFunctionService } from 'jslib/services/webCryptoFunction.service';
+} from 'jslib-common/services';
+import { ConsoleLogService } from 'jslib-common/services/consoleLog.service';
+import { EventService } from 'jslib-common/services/event.service';
+import { ExportService } from 'jslib-common/services/export.service';
+import { FileUploadService } from 'jslib-common/services/fileUpload.service';
+import { NotificationsService } from 'jslib-common/services/notifications.service';
+import { PolicyService } from 'jslib-common/services/policy.service';
+import { SearchService } from 'jslib-common/services/search.service';
+import { SendService } from 'jslib-common/services/send.service';
+import { SystemService } from 'jslib-common/services/system.service';
+import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
 import {
     ApiService as ApiServiceAbstraction,
@@ -42,6 +42,7 @@ import {
     EnvironmentService as EnvironmentServiceAbstraction,
     FolderService as FolderServiceAbstraction,
     I18nService as I18nServiceAbstraction,
+    LogService as LogServiceAbstraction,
     MessagingService as MessagingServiceAbstraction,
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
     PlatformUtilsService as PlatformUtilsServiceAbstraction,
@@ -53,18 +54,19 @@ import {
     TotpService as TotpServiceAbstraction,
     UserService as UserServiceAbstraction,
     VaultTimeoutService as VaultTimeoutServiceAbstraction,
-} from 'jslib/abstractions';
-import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib/abstractions/cryptoFunction.service';
-import { EventService as EventServiceAbstraction } from 'jslib/abstractions/event.service';
-import { ExportService as ExportServiceAbstraction } from 'jslib/abstractions/export.service';
-import { FileUploadService as FileUploadServiceAbstraction } from 'jslib/abstractions/fileUpload.service';
-import { NotificationsService as NotificationsServiceAbstraction } from 'jslib/abstractions/notifications.service';
-import { PolicyService as PolicyServiceAbstraction } from 'jslib/abstractions/policy.service';
-import { SearchService as SearchServiceAbstraction } from 'jslib/abstractions/search.service';
-import { SendService as SendServiceAbstraction } from 'jslib/abstractions/send.service';
-import { SystemService as SystemServiceAbstraction } from 'jslib/abstractions/system.service';
+} from 'jslib-common/abstractions';
+import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib-common/abstractions/cryptoFunction.service';
+import { EventService as EventServiceAbstraction } from 'jslib-common/abstractions/event.service';
+import { ExportService as ExportServiceAbstraction } from 'jslib-common/abstractions/export.service';
+import { FileUploadService as FileUploadServiceAbstraction } from 'jslib-common/abstractions/fileUpload.service';
+import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
+import { PolicyService as PolicyServiceAbstraction } from 'jslib-common/abstractions/policy.service';
+import { SearchService as SearchServiceAbstraction } from 'jslib-common/abstractions/search.service';
+import { SendService as SendServiceAbstraction } from 'jslib-common/abstractions/send.service';
+import { SystemService as SystemServiceAbstraction } from 'jslib-common/abstractions/system.service';
+import { AutofillService as AutofillServiceAbstraction } from '../services/abstractions/autofill.service';
 
-import { Utils } from 'jslib/misc/utils';
+import { Utils } from 'jslib-common/misc/utils';
 
 import { BrowserApi } from '../browser/browserApi';
 import { SafariApp } from '../browser/safariApp';
@@ -80,6 +82,7 @@ import WindowsBackground from './windows.background';
 
 import { PopupUtilsService } from '../popup/services/popup-utils.service';
 import AutofillService from '../services/autofill.service';
+import { BrowserCryptoService } from '../services/browserCrypto.service';
 import BrowserMessagingService from '../services/browserMessaging.service';
 import BrowserPlatformUtilsService from '../services/browserPlatformUtils.service';
 import BrowserStorageService from '../services/browserStorage.service';
@@ -97,7 +100,7 @@ export default class MainBackground {
     i18nService: I18nServiceAbstraction;
     platformUtilsService: PlatformUtilsServiceAbstraction;
     constantsService: ConstantsService;
-    consoleLogService: ConsoleLogService;
+    logService: LogServiceAbstraction;
     cryptoService: CryptoServiceAbstraction;
     cryptoFunctionService: CryptoFunctionServiceAbstraction;
     tokenService: TokenServiceAbstraction;
@@ -175,23 +178,24 @@ export default class MainBackground {
         this.secureStorageService = new BrowserStorageService();
         this.i18nService = new I18nService(BrowserApi.getUILanguage(window));
         this.cryptoFunctionService = new WebCryptoFunctionService(window, this.platformUtilsService);
-        this.consoleLogService = new ConsoleLogService(false);
-        this.cryptoService = new CryptoService(this.storageService, this.secureStorageService,
-            this.cryptoFunctionService, this.platformUtilsService, this.consoleLogService);
+        this.logService = new ConsoleLogService(false);
+        this.cryptoService = new BrowserCryptoService(this.storageService, this.secureStorageService,
+            this.cryptoFunctionService, this.platformUtilsService, this.logService);
         this.tokenService = new TokenService(this.storageService);
         this.appIdService = new AppIdService(this.storageService);
-        this.apiService = new ApiService(this.tokenService, this.platformUtilsService,
+        this.environmentService = new EnvironmentService(this.storageService);
+        this.apiService = new ApiService(this.tokenService, this.platformUtilsService, this.environmentService,
             (expired: boolean) => this.logout(expired));
         this.userService = new UserService(this.tokenService, this.storageService);
         this.settingsService = new SettingsService(this.userService, this.storageService);
-        this.fileUploadService = new FileUploadService(this.consoleLogService, this.apiService);
+        this.fileUploadService = new FileUploadService(this.logService, this.apiService);
         this.cipherService = new CipherService(this.cryptoService, this.userService, this.settingsService,
             this.apiService, this.fileUploadService, this.storageService, this.i18nService, () => this.searchService);
         this.folderService = new FolderService(this.cryptoService, this.userService, this.apiService,
             this.storageService, this.i18nService, this.cipherService);
         this.collectionService = new CollectionService(this.cryptoService, this.userService, this.storageService,
             this.i18nService);
-        this.searchService = new SearchService(this.cipherService, this.consoleLogService, this.i18nService);
+        this.searchService = new SearchService(this.cipherService, this.logService, this.i18nService);
         this.sendService = new SendService(this.cryptoService, this.userService, this.apiService, this.fileUploadService,
             this.storageService, this.i18nService, this.cryptoFunctionService);
         this.stateService = new StateService();
@@ -223,11 +227,10 @@ export default class MainBackground {
             this.eventService);
         this.containerService = new ContainerService(this.cryptoService);
         this.auditService = new AuditService(this.cryptoFunctionService, this.apiService);
-        this.exportService = new ExportService(this.folderService, this.cipherService, this.apiService);
+        this.exportService = new ExportService(this.folderService, this.cipherService, this.apiService,
+            this.cryptoService);
         this.notificationsService = new NotificationsService(this.userService, this.syncService, this.appIdService,
-            this.apiService, this.vaultTimeoutService, () => this.logout(true), this.consoleLogService);
-        this.environmentService = new EnvironmentService(this.apiService, this.storageService,
-            this.notificationsService);
+            this.apiService, this.vaultTimeoutService, this.environmentService, () => this.logout(true), this.logService);
         this.popupUtilsService = new PopupUtilsService(this.platformUtilsService);
         this.systemService = new SystemService(this.storageService, this.vaultTimeoutService,
             this.messagingService, this.platformUtilsService, () => {
@@ -271,7 +274,7 @@ export default class MainBackground {
                     const message = Object.assign({}, { command: subscriber }, arg);
                     that.runtimeBackground.processMessage(message, that, null);
                 }
-            }(), this.vaultTimeoutService, this.consoleLogService);
+            }(), this.vaultTimeoutService, this.logService);
     }
 
     async bootstrap() {
@@ -296,7 +299,7 @@ export default class MainBackground {
                 await this.setIcon();
                 this.cleanupNotificationQueue();
                 this.fullSync(true);
-                setTimeout(() => this.notificationsService.init(this.environmentService), 2500);
+                setTimeout(() => this.notificationsService.init(), 2500);
                 resolve();
             }, 500);
         });
@@ -586,7 +589,7 @@ export default class MainBackground {
     }
 
     private async loadLoginContextMenuOptions(cipher: any) {
-        if (cipher == null || cipher.type !== CipherType.Login) {
+        if (cipher == null || cipher.type !== CipherType.Login || cipher.reprompt !== CipherRepromptType.None) {
             return;
         }
 

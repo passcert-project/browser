@@ -1,12 +1,12 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToasterModule } from 'angular2-toaster';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ServicesModule } from './services/services.module';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,47 +47,51 @@ import { PasswordHistoryComponent } from './vault/password-history.component';
 import { ShareComponent } from './vault/share.component';
 import { ViewComponent } from './vault/view.component';
 
+import { EffluxDatesComponent as SendEffluxDatesComponent } from './send/efflux-dates.component';
 import { SendAddEditComponent } from './send/send-add-edit.component';
 import { SendGroupingsComponent } from './send/send-groupings.component';
 import { SendTypeComponent } from './send/send-type.component';
 
-import { A11yTitleDirective } from 'jslib/angular/directives/a11y-title.directive';
-import { ApiActionDirective } from 'jslib/angular/directives/api-action.directive';
-import { AutofocusDirective } from 'jslib/angular/directives/autofocus.directive';
-import { BlurClickDirective } from 'jslib/angular/directives/blur-click.directive';
-import { BoxRowDirective } from 'jslib/angular/directives/box-row.directive';
-import { FallbackSrcDirective } from 'jslib/angular/directives/fallback-src.directive';
-import { InputVerbatimDirective } from 'jslib/angular/directives/input-verbatim.directive';
-import { SelectCopyDirective } from 'jslib/angular/directives/select-copy.directive';
-import { StopClickDirective } from 'jslib/angular/directives/stop-click.directive';
-import { StopPropDirective } from 'jslib/angular/directives/stop-prop.directive';
-import { TrueFalseValueDirective } from 'jslib/angular/directives/true-false-value.directive';
+import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
+import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
+import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
+import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
+import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
+import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
+import { InputVerbatimDirective } from 'jslib-angular/directives/input-verbatim.directive';
+import { SelectCopyDirective } from 'jslib-angular/directives/select-copy.directive';
+import { StopClickDirective } from 'jslib-angular/directives/stop-click.directive';
+import { StopPropDirective } from 'jslib-angular/directives/stop-prop.directive';
+import { TrueFalseValueDirective } from 'jslib-angular/directives/true-false-value.directive';
 
-import { ColorPasswordPipe } from 'jslib/angular/pipes/color-password.pipe';
-import { I18nPipe } from 'jslib/angular/pipes/i18n.pipe';
-import { SearchCiphersPipe } from 'jslib/angular/pipes/search-ciphers.pipe';
+import { ColorPasswordPipe } from 'jslib-angular/pipes/color-password.pipe';
+import { I18nPipe } from 'jslib-angular/pipes/i18n.pipe';
+import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
 
 import { ActionButtonsComponent } from './components/action-buttons.component';
-import { CiphersListComponent } from './components/ciphers-list.component';
+import { CipherRowComponent } from './components/cipher-row.component';
 import { PopOutComponent } from './components/pop-out.component';
 import { SendListComponent } from './components/send-list.component';
 
-import { CalloutComponent } from 'jslib/angular/components/callout.component';
-import { IconComponent } from 'jslib/angular/components/icon.component';
+import { CalloutComponent } from 'jslib-angular/components/callout.component';
+import { IconComponent } from 'jslib-angular/components/icon.component';
 
 import {
     CurrencyPipe,
     DatePipe,
     registerLocaleData,
 } from '@angular/common';
+import localeAz from '@angular/common/locales/az';
 import localeBe from '@angular/common/locales/be';
 import localeBg from '@angular/common/locales/bg';
+import localeBn from '@angular/common/locales/bn';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
 import localeDa from '@angular/common/locales/da';
 import localeDe from '@angular/common/locales/de';
 import localeEl from '@angular/common/locales/el';
 import localeEnGb from '@angular/common/locales/en-GB';
+import localeEnIn from '@angular/common/locales/en-IN';
 import localeEs from '@angular/common/locales/es';
 import localeEt from '@angular/common/locales/et';
 import localeFa from '@angular/common/locales/fa';
@@ -99,7 +103,10 @@ import localeHu from '@angular/common/locales/hu';
 import localeId from '@angular/common/locales/id';
 import localeIt from '@angular/common/locales/it';
 import localeJa from '@angular/common/locales/ja';
+import localeKn from '@angular/common/locales/kn';
 import localeKo from '@angular/common/locales/ko';
+import localeLv from '@angular/common/locales/lv';
+import localeMl from '@angular/common/locales/ml';
 import localeNb from '@angular/common/locales/nb';
 import localeNl from '@angular/common/locales/nl';
 import localePl from '@angular/common/locales/pl';
@@ -117,14 +124,17 @@ import localeVi from '@angular/common/locales/vi';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
 
+registerLocaleData(localeAz, 'az');
 registerLocaleData(localeBe, 'be');
 registerLocaleData(localeBg, 'bg');
+registerLocaleData(localeBn, 'bn');
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
 registerLocaleData(localeDa, 'da');
 registerLocaleData(localeDe, 'de');
 registerLocaleData(localeEl, 'el');
 registerLocaleData(localeEnGb, 'en-GB');
+registerLocaleData(localeEnIn, 'en-IN');
 registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEt, 'et');
 registerLocaleData(localeFa, 'fa');
@@ -137,6 +147,9 @@ registerLocaleData(localeId, 'id');
 registerLocaleData(localeIt, 'it');
 registerLocaleData(localeJa, 'ja');
 registerLocaleData(localeKo, 'ko');
+registerLocaleData(localeKn, 'kn');
+registerLocaleData(localeLv, 'lv');
+registerLocaleData(localeMl, 'ml');
 registerLocaleData(localeNb, 'nb');
 registerLocaleData(localeNl, 'nl');
 registerLocaleData(localePl, 'pl');
@@ -156,14 +169,15 @@ registerLocaleData(localeZhTw, 'zh-TW');
 
 @NgModule({
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
         AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        DragDropModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ScrollingModule,
         ServicesModule,
         ToasterModule.forRoot(),
-        InfiniteScrollModule,
-        DragDropModule,
     ],
     declarations: [
         A11yTitleDirective,
@@ -176,8 +190,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BlurClickDirective,
         BoxRowDirective,
         CalloutComponent,
+        CipherRowComponent,
         CiphersComponent,
-        CiphersListComponent,
         CollectionsComponent,
         ColorPasswordPipe,
         CurrentTabComponent,
@@ -206,6 +220,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SearchCiphersPipe,
         SelectCopyDirective,
         SendAddEditComponent,
+        SendEffluxDatesComponent,
         SendGroupingsComponent,
         SendListComponent,
         SendTypeComponent,

@@ -21,7 +21,8 @@ The Bitwarden browser extension is written using the Web Extension API and Angul
 
 **Requirements**
 
-- [Node.js](https://nodejs.org) v8.11 or greater
+- [Node.js](https://nodejs.org) v14.17 or greater
+- NPM v7
 - [Gulp](https://gulpjs.com/) (`npm install --global gulp-cli`)
 - Chrome (preferred), Opera, or Firefox browser
 
@@ -41,6 +42,14 @@ You can now load the extension into your browser through the browser's extension
 - Firefox
   1. Type `about:debugging` in your address bar to bring up the add-ons page.
   2. Click the `Load Temporary Add-on` button, navigate to the `build/manifest.json` file, and "Open".
+
+**Desktop communication**
+
+Native Messaging (communication between the desktop application and browser extension) works by having the browser start a lightweight proxy baked into our desktop application.
+
+Out of the box, the desktop application can only communicate with the production browser extension. When you enable browser integration in the desktop application, the application generates manifests which contain the production IDs of the browser extensions. To enable communication between the desktop application and development versions of browser extensions, add the development IDs to the `allowed_extensions` section of the corresponding manifests.
+
+Manifests are located in the `browser` subdirectory of the Bitwarden configuration directory. For instance, on Windows the manifests are located at `C:\Users\<user>\AppData\Roaming\Bitwarden\browsers` and on macOS these are in `Application Support` for various browsers ([for example](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests#manifest_location)). Note that disabling the desktop integration will delete the manifests, and the files will need to be updated again.
 
 # Contribute
 
