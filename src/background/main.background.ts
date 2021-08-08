@@ -54,6 +54,7 @@ import {
     TotpService as TotpServiceAbstraction,
     UserService as UserServiceAbstraction,
     VaultTimeoutService as VaultTimeoutServiceAbstraction,
+    PasswordRulesParserService as PasswordRulesParserServiceAbstraction
 } from 'jslib-common/abstractions';
 import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib-common/abstractions/cryptoFunction.service';
 import { EventService as EventServiceAbstraction } from 'jslib-common/abstractions/event.service';
@@ -89,10 +90,8 @@ import BrowserStorageService from '../services/browserStorage.service';
 import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
 
-import { AutofillService as AutofillServiceAbstraction } from '../services/abstractions/autofill.service';
+import { PasswordRulesParserService } from 'jslib/common/src/services/passwordRulesParser.service';
 
-import { PasswordRulesParserService as PasswordRulesParserServiceAbstraction } from 'jslib/abstractions/passwordRulesParser.service';
-import { PasswordRulesParserService } from 'jslib/services/passwordRulesParser.service';
 export default class MainBackground {
     messagingService: MessagingServiceAbstraction;
     storageService: StorageServiceAbstraction;

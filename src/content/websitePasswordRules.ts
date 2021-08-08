@@ -1,13 +1,12 @@
 // search for rules when the page is loaded
 document.addEventListener('DOMContentLoaded', event => {
-    console.log("--- I LOADED EVERYTHING ---");
     searchDomForPasswordRules();
 });
 
 // search for rules when the tab was hidden and now is visible - when the tab has focus after the first time it was loaded. Otherwise, the code above would not run, since the page was already run.
-document.addEventListener("visibilitychange", event => {
+document.addEventListener('visibilitychange', event => {
 
-    if (document.visibilityState === "visible") {
+    if (document.visibilityState === 'visible') {
         searchDomForPasswordRules();
     }
 });
@@ -15,25 +14,16 @@ document.addEventListener("visibilitychange", event => {
 function searchDomForPasswordRules(): void {
     const policiesFound = document.querySelectorAll('[passwordrules]');
 
-    // TODO what if there is more than a policy?
+    // TODO what if there is more than one policy?
     if (policiesFound.length > 0) {
-        console.log('FOUND -> ', policiesFound);
-
-        console.log('FOUND POLICY -> ', policiesFound[0].attributes);
-
-        console.log('FOUND POLICY NAME -> ', policiesFound[0].attributes.getNamedItem('passwordrules'));
-
-        console.log('FOUND POLICY VALUE -> ', policiesFound[0].attributes.getNamedItem('passwordrules').value);
-
         chrome.runtime.sendMessage({
             command: 'bgWebsitePasswordRules',
             rulesValue: policiesFound[0].attributes.getNamedItem('passwordrules').value,
             sender: 'websitePasswordRules',
         });
     }
-
-    else if (policiesFound.length == 0) {
-        console.log("I found no password rules in this site");
+    // TODO search the quirks in apple's repo
+    else if (policiesFound.length === 0) {
         chrome.runtime.sendMessage({
             command: 'bgWebsitePasswordRules',
             rulesValue: 'no-rules',

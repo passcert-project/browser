@@ -15,6 +15,8 @@ import { SystemService } from 'jslib-common/abstractions/system.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
+import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PasswordRulesParserService } from 'jslib-common/abstractions/passwordRulesParser.service';
 import { AutofillService } from '../services/abstractions/autofill.service';
 import BrowserPlatformUtilsService from '../services/browserPlatformUtils.service';
 
@@ -27,9 +29,7 @@ import { Utils } from 'jslib-common/misc/utils';
 import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
-import { PasswordRulesParserService } from 'jslib/abstractions/passwordRulesParser.service';
-import { PasswordRulesParser, RuleData } from '@passcert/pwrules-annotations'
+import { PasswordRulesParser, RuleData } from '@passcert/pwrules-annotations';
 
 export default class RuntimeBackground {
     private runtime: any;
@@ -181,11 +181,10 @@ export default class RuntimeBackground {
                 catch { }
                 break;
             case 'bgWebsitePasswordRules':
-                console.log("I received this ", msg);
                 if (msg.rulesValue === 'no-rules') {
+                    //TODO
                     this.readRulesFromRepo();
                 } else {
-                    //TODO
                     this.passwordRequirementsTranslator(msg.rulesValue);
                 }
 
@@ -489,30 +488,23 @@ export default class RuntimeBackground {
 
 
     private async passwordRequirementsTranslator(policyAnnotation: string): Promise<any> {
-        console.log("these are the rules -> ", policyAnnotation);
         let rules: RuleData[];
-        let rulesParser = new PasswordRulesParser();
+        const rulesParser = new PasswordRulesParser();
         rules = rulesParser.parsePasswordRules(policyAnnotation);
-        console.log("i got this -> ", rules);
 
         // new policy, reset possible left over values
         this.passwordRulesParserService.resetRulesReferences();
 
-        let passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(rules);
-
-        console.log("REQUIREMENTS => ", passwordRequirements);
-
+        const passwordRequirements = this.passwordRulesParserService.convertToBitwardensObject(rules);
         this.passwordGenerationService.setWebsitePasswordRules(passwordRequirements);
     }
 
+    // TODO need help to have this working for subdomains and so on
     private readRulesFromRepo(): any {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             var tab = tabs[0];
-            console.log("TAB => ", tab);
             var url = new URL(tab.url);
-            console.log("url -> ", url);
             var domain = url.hostname.startsWith('www.') ? url.hostname.replace('www.', '') : url.hostname;
-            console.log("domain -> ", domain);
             var knownDomains = this.readKnownDomains();
 
             // check if the domain has rules in the github repo
@@ -522,16 +514,12 @@ export default class RuntimeBackground {
             req.send(null);
             if (req.status == 200) {
                 if (req.responseText.includes(domain)) {
-                    console.log("I GOT THE DOMAIN: ", domain);
                     text = JSON.parse(req.responseText);
-                    console.log("HERE ARE THE RULES: ", text[domain]);
                     return text[domain];
                 } else {
-                    console.log("This website doesn't have rules in the repo");
                 }
             }
             else {
-                console.log("Could not read from github repo.");
             }
 
         });
@@ -546,7 +534,6 @@ export default class RuntimeBackground {
         if (domains.status == 200) {
             let noComments = domains.responseText.replace(removeComments, '');
             let noExtraLines = noComments.replace(removeExtraNewLines, '');
-            console.log("DOMAINS -> ", noExtraLines);
 
             return noExtraLines;
         }
