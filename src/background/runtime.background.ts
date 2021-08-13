@@ -181,12 +181,19 @@ export default class RuntimeBackground {
                 catch { }
                 break;
             case 'bgWebsitePasswordRules':
+                console.log(`I received this @ runtime => ${msg.rulesValue}`);
+
                 if (msg.rulesValue === 'no-rules') {
-                    //TODO
-                    this.readRulesFromRepo();
+                    // TODO No rules found in the website. Should check the file in apple's repo - quirks/password-rules.json
+                    // to see if the community has posted the rules of the website we're in.
+                    // for now, just set the object to bitwarden's default using apple's rules
+                    const bitwardenDefaultAsPolicyAnnotation = 'minlength: 5; maxlength: 128; required: upper; required: lower; required: digit;'
+                    this.passwordRequirementsTranslator(bitwardenDefaultAsPolicyAnnotation);
                 } else {
                     this.passwordRequirementsTranslator(msg.rulesValue);
                 }
+
+
 
             case 'webAuthnResult':
                 const vaultUrl2 = this.environmentService.getWebVaultUrl();

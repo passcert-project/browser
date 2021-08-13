@@ -13,6 +13,7 @@ import {
     EnvironmentService,
     FolderService,
     PasswordGenerationService,
+    PasswordRulesParserService,
     SettingsService,
     StateService,
     SyncService,
@@ -90,7 +91,6 @@ import BrowserStorageService from '../services/browserStorage.service';
 import I18nService from '../services/i18n.service';
 import VaultTimeoutService from '../services/vaultTimeout.service';
 
-import { PasswordRulesParserService } from 'jslib/common/src/services/passwordRulesParser.service';
 
 export default class MainBackground {
     messagingService: MessagingServiceAbstraction;
