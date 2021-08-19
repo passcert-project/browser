@@ -1701,25 +1701,25 @@
     "message": "One or more organization policies are affecting your Send options."
   },
   "formalVerificationGeneratorTitle": {
-  "message": "PassCert formally verifies that the password generator is truly random"
+  "message": "The generator is truly unpredictable"
 },
   "formalVerificationGenerator": {
-    "message": "This means if an attacker wants to discover a password, it can only do so by trying all possible passwords."
+    "message": "It makes it more difficult for attackers to discover a password, since they have to try all possible passwords. This feature is formally verified."
   },
   "tip_formalVerification": {
     "message": "This feature is formally verified, click the icon to learn more"
   },
   "formalVerificationPasswordSecurityTitle": {
-    "message": "PassCert formally verifies that your password are secure"
+    "message": "Your passwords are verified to be secure"
   },
   "formalVerificationPasswordSecurity": {
-    "message": "If an attacker has access to memory, it will not be able to see the password in plain-text."
+    "message": "Your passwords are vaulted with formally verified encryption. When in use, passwords are outside their vault for the minimal amount of time possible. When the password is returned to the vault, its traces are sterilized. This feature is formally verified."
   },
   "formalVerificationMasterPasswordSecurityTitle": {
-    "message": "PassCert guarantees that the master password is secure"
+    "message": "The primary password is verified to be secure"
   },
   "formalVerificationMasterPasswordSecurity": {
-    "message": "Other Password Managers may make it available in memory where other programs may access it. Passcert is formally verified not to do so."
+    "message": "Your primary pass is secure with formally verified encryption. When it stops being in use its traces are sterilized. This feature is formally verified."
   },
   "formalVerificationClipboardTitle": {
     "message": "PassCert guarantees that the clipboard is cleared"
