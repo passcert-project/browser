@@ -10,6 +10,9 @@
     <i class="fa fa-lg fa-list-alt" aria-hidden="true"></i>
 </span>
 <ng-container *ngIf="cipher.type === cipherType.Login">
+    <span class="row-btn" href="#" appStopClick appStopProp (click)="formalVerificationIcon()">
+        <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+    </span>
     <span class="row-btn" appStopClick appStopProp appA11yTitle="{{'launch' | i18n}}" (click)="launchCipher()"
         *ngIf="!showView" [ngClass]="{disabled: !cipher.login.canLaunch}">
         <i class="fa fa-lg fa-share-square-o" aria-hidden="true"></i>
