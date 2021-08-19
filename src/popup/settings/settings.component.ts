@@ -72,24 +72,24 @@ export class SettingsComponent implements OnInit {
             },
             {
                 selector: '.tour-security',
-                content: 'In this section you can change security settings',
+                content: 'In this section you can change security settings,',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             },
             {
                 selector: '.tour-vaultTimeout',
-                content: 'Like when you want your vault to time out',
+                content: 'like when you want your vault to time out...',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             },
             {
                 selector: '.tour-lockNow',
-                content: 'Our locking you vault right away',
+                content: '...our lock your vault right away.',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             },
             {
-                content: 'Enjoy bitwarden',
+                content: 'This password manager is formally verified and feel free to click on the formal verification icon at any time. Enjoy PassCert!',
             },
         ],
     };

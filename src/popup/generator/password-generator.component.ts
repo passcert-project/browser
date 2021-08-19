@@ -77,17 +77,17 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
                 useHighlightPadding: true,
             }, {
                 selector: '.tour-generator-length',
-                content: 'Like the size of the password',
+                content: 'Like the size of the password...',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             }, {
                 selector: '.tour-generator-numbers',
-                content: 'If you want to include numbers',
+                content: '...if you want to include numbers...',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             }, {
                 selector: '.tour-generator-special',
-                content: 'Or use special characters',
+                content: '...or use special characters',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             },

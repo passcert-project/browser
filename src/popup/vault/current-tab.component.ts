@@ -60,7 +60,7 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
         useOrb: false,
         steps: [
             {
-                content: 'Welcome, let\'s start the tour',
+                content: 'Welcome to PassCert\'s tour, a formally verified password manager. Let\'s start!',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },
@@ -90,14 +90,14 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
             },
             {
                 selector: '.add-a-login-tour',
-                content: 'but you can a new one...',
+                content: 'but you can a new one here...',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },
             {
                 selector: '.add-a-login-tour-no-cred',
-                content: 'and you can a new one...',
-                orientation: Orientation.Left,
+                content: 'and here you can a new one...',
+                orientation: Orientation.BottomLeft,
                 useHighlightPadding: true,
             },
             {
