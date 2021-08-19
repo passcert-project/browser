@@ -19,5 +19,8 @@
     </div>
     <app-action-buttons [cipher]="c" [showView]="showView" (onView)="viewCipher(c)" (launchEvent)="launchCipher(c)" 
         class="action-buttons">
+        <a class="row-btn" href="#" appStopClick (click)="formalVerificationIcon()">
+            <div class="fv-icon" appA11yTitle="{{'tip_formalVerification' | i18n}}"></div>
+        </a>
     </app-action-buttons>
 </a>

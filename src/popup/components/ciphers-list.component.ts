@@ -1,13 +1,31 @@
+import { Location } from '@angular/common';
 import {
+    ChangeDetectorRef,
     Component,
     EventEmitter,
-    Input,
+    Input, NgZone,
     Output,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+    ApiService,
+    AuditService,
+    CipherService,
+    CryptoService,
+    I18nService, MessagingService,
+    PlatformUtilsService,
+    TokenService,
+    TotpService, UserService
+} from 'jslib/abstractions';
+import { EventService } from 'jslib/abstractions/event.service';
+import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
 
 import { CipherType } from 'jslib/enums/cipherType';
 
 import { CipherView } from 'jslib/models/view/cipherView';
+import FormalVerificationInfo from '../../models/formalVerificationInfo';
+import { AutofillService } from '../../services/abstractions/autofill.service';
+import { PopupUtilsService } from '../services/popup-utils.service';
 
 @Component({
     selector: 'app-ciphers-list',
@@ -23,6 +41,10 @@ export class CiphersListComponent {
 
     cipherType = CipherType;
 
+    constructor( private i18nService: I18nService, private platformUtilsService: PlatformUtilsService, private router: Router) {
+        // empty
+    }
+
     selectCipher(c: CipherView) {
         this.onSelected.emit(c);
     }
@@ -33,5 +55,9 @@ export class CiphersListComponent {
 
     viewCipher(c: CipherView) {
         this.onView.emit(c);
+    }
+
+    formalVerificationIcon() {
+        FormalVerificationInfo.formalVerificationPasswordSecurity(this.platformUtilsService, this.i18nService, this.router);
     }
 }
