@@ -44,28 +44,33 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             }, {
-                selector: '.tour-copyPassword',
-                content: 'You can also copy the password to the clipboard. By doing this you will be able to past it wherever you want',
-                orientation: Orientation.Bottom,
-                useHighlightPadding: true,
-            }, {
                 selector: '.tour-fv-icon',
-                content: 'You know this generator is formally verified because of this icon, and you if you click on it...',
+                content: 'This generator is formally verified, and you if you click this icon...',
                 orientation: Orientation.Right,
                 closeAction: this.formalVerificationIcon,
-                useHighlightPadding: true,
-            }, {
-                selector: '.tour-fv-icon',
-                content: '... a pop-up opens explaining how',
-                orientation: Orientation.Right,
-                useHighlightPadding: true,
-            }, {
-                selector: '.tour-explanation',
-                content: 'In this case .......',
-                orientation: Orientation.Bottom,
                 action: this.formalVerificationIcon,
                 useHighlightPadding: true,
             }, {
+                selector: '.tour-fv-icon',
+                content: '...a pop-up opens explaining how. ',
+                orientation: Orientation.Right,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-fv-icon',
+                content: 'In this case the formal verification makes it more difficult for attackers to discover a password, since they have to try all possible passwords.',
+                orientation: Orientation.Right,
+                useHighlightPadding: true,
+            },{
+                selector: '.tour-regeneratePassword',
+                content: 'After generating the password you may want to regenerate it and make a new one',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            }, {
+                selector: '.tour-copyPassword',
+                content: 'You can also copy the password to the clipboard. By doing this you will be able to paste it wherever you want',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },  {
                 selector: '.tour-settings',
                 content: 'Here you change an array of settings that affect the generated password',
                 orientation: Orientation.Top,

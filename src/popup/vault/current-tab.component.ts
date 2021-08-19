@@ -72,7 +72,13 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
             },
             {
                 selector: '.info-tour',
-                content: 'Here you can see the credentials saved for the current website',
+                content: 'Here you can see the credentials saved for the current website...',
+                orientation: Orientation.Bottom,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.info-tour',
+                content: 'you can click on the credentials to autofill them on the website you are on...',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },
@@ -85,12 +91,18 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
             {
                 selector: '.add-a-login-tour',
                 content: 'but you can a new one...',
-                orientation: Orientation.Bottom,
+                orientation: Orientation.Left,
+                useHighlightPadding: true,
+            },
+            {
+                selector: '.add-a-login-tour-no-cred',
+                content: 'and you can a new one...',
+                orientation: Orientation.Left,
                 useHighlightPadding: true,
             },
             {
                 selector: '.search-tour',
-                content: 'or search for the login ou credential you want here',
+                content: '...or search for the login ou credential you want here',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },
