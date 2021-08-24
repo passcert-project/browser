@@ -78,7 +78,7 @@ export class SettingsComponent implements OnInit {
             },
             {
                 selector: '.tour-vaultTimeout',
-                content: 'like when you want your vault to time out...',
+                content: 'like when you want your password vault to time out...',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             },

@@ -90,19 +90,19 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
             },
             {
                 selector: '.add-a-login-tour',
-                content: 'but you can a new one here...',
+                content: 'but you can add new one here...',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },
             {
                 selector: '.add-a-login-tour-no-cred',
-                content: 'and here you can a new one...',
+                content: 'and here you can add a new one...',
                 orientation: Orientation.BottomLeft,
                 useHighlightPadding: true,
             },
             {
                 selector: '.search-tour',
-                content: '...or search for the login ou credential you want here',
+                content: '...or search for the login credential you want here',
                 orientation: Orientation.Bottom,
                 useHighlightPadding: true,
             },

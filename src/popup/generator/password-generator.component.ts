@@ -72,7 +72,7 @@ export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
                 useHighlightPadding: true,
             },  {
                 selector: '.tour-settings',
-                content: 'Here you change an array of settings that affect the generated password',
+                content: 'Here, you change an array of settings that affect the generated password',
                 orientation: Orientation.Top,
                 useHighlightPadding: true,
             }, {
