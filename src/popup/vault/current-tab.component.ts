@@ -97,7 +97,7 @@ export class CurrentTabComponent implements OnInit, OnDestroy {
             {
                 selector: '.add-a-login-tour-no-cred',
                 content: 'and here you can add a new one...',
-                orientation: Orientation.BottomLeft,
+                orientation: Orientation.Left,
                 useHighlightPadding: true,
             },
             {
