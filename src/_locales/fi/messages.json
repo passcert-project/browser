@@ -312,7 +312,7 @@
     "message": "Holvisi on lukittu. Syötä pääsalasana jatkaaksesi."
   },
   "unlock": {
-    "message": "Avaa lukitus"
+    "message": "Avaa"
   },
   "loggedInAsOn": {
     "message": "Kirjautuneena tunnuksella $EMAIL$ palveluun $HOSTNAME$.",
@@ -638,7 +638,7 @@
     "message": "Bitwardenin avulla voit jakaa holvisi sisältöä muiden kanssa organisaatiotiliä käyttäen. Haluatko lukea bitwarden.com-sivustolta lisää?"
   },
   "moveToOrganization": {
-    "message": "Siirrä organisaatioon"
+    "message": "Siirrä organisaatiolle"
   },
   "share": {
     "message": "Jaa"
@@ -657,7 +657,7 @@
     }
   },
   "moveToOrgDesc": {
-    "message": "Valitse organisaatio, johon haluat siirtää kohteen. Tämä siirtää kohteen organisaation omistukseen, etkä tämän jälkeen ole enää sen suora omistaja."
+    "message": "Valitse organisaatio, jolle haluat siirtää kohteen. Tämä siirtää kohteen organisaation omistukseen, etkä tämän jälkeen ole enää sen suora omistaja."
   },
   "learnMore": {
     "message": "Lue lisää"
@@ -1292,10 +1292,10 @@
     "description": "PIN code. Ex. The short code (often numeric) that you use to unlock a device."
   },
   "unlockWithPin": {
-    "message": "Avaa lukitus PIN-koodilla"
+    "message": "Avaa PIN-koodilla"
   },
   "setYourPinCode": {
-    "message": "Aseta PIN-koodisi Bitwardenin avausta varten. PIN-asetukset tyhjentyvät, jos kirjaudut kokonaan ulos sovelluksesta."
+    "message": "Aseta PIN-koodi Bitwardenin avaukselle. PIN-asetukset tyhjentyvät, jos kirjaudut kokonaan ulos laajennuksesta."
   },
   "pinRequired": {
     "message": "PIN-koodi vaaditaan."
@@ -1609,14 +1609,14 @@
     "message": "Tiedosto, jonka haluat lähettää."
   },
   "deletionDate": {
-    "message": "Poistopäivä"
+    "message": "Poistoajankohta"
   },
   "deletionDateDesc": {
-    "message": "Send poistetaan pysyvästi määritettynä ajankohtana.",
+    "message": "Send poistuu pysyvästi määritettynä ajankohtana.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Erääntymispäivä"
+    "message": "Erääntymisajankohta"
   },
   "expirationDateDesc": {
     "message": "Jos määritetty, Send erääntyy määritettynä ajankohtana.",
@@ -1718,19 +1718,19 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'To use a calendar style date picker click here **to pop out your window.**'"
   },
   "expirationDateIsInvalid": {
-    "message": "Asetettu erääntymismispäivä on virheellinen."
+    "message": "Määritetty erääntymismisajankohta on virheellinen."
   },
   "deletionDateIsInvalid": {
-    "message": "Asetettu poistopäivä on virheellinen."
+    "message": "Määritetty poistoajankohta on virheellinen."
   },
   "expirationDateAndTimeRequired": {
-    "message": "Viimeinen voimassaolopäivä ja aika vaaditaan."
+    "message": "Erääntymispäivä ja -aika vaaditaan."
   },
   "deletionDateAndTimeRequired": {
     "message": "Poistopäivä ja -aika vaaditaan."
   },
   "dateParsingError": {
-    "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymispäiviä."
+    "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymisajankohtia."
   },
   "hideEmail": {
     "message": "Piilota sähköpostiosoitteeni vastaanottajilta."

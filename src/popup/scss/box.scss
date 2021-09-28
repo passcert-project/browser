@@ -200,6 +200,13 @@
         }
     }
 
+    &.last:last-child:before {
+        border-bottom: 1px solid #000000;
+        @include themify($themes) {
+            border-bottom-color: themed('boxBorderColor');
+        }
+    }
+
     &:after {
         content: "";
         display: table;
@@ -283,6 +290,10 @@
         display: flex;
         align-items: center;
         word-break: break-all;
+
+        &.box-content-row-word-break {
+            word-break: normal;
+        }
     }
 
     &.box-content-row-multi {
