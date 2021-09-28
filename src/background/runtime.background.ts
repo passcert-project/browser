@@ -1,4 +1,4 @@
-import { CipherType } from 'jslib-common/enums';
+import { CipherType } from 'jslib-common/enums/cipherType';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
 import { LoginUriView } from 'jslib-common/models/view/loginUriView';
@@ -6,6 +6,7 @@ import { LoginView } from 'jslib-common/models/view/loginView';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
+import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService } from 'jslib-common/abstractions/notifications.service';
@@ -26,7 +27,6 @@ import MainBackground from './main.background';
 
 import { Utils } from 'jslib-common/misc/utils';
 
-import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { PasswordRulesParser, RuleData } from '@passcert/pwrules-annotations';
@@ -46,7 +46,7 @@ export default class RuntimeBackground {
         private userService: UserService,
         private passwordGenerationService: PasswordGenerationService,
         private messagingService: MessagingService,
-        private passwordRulesParserService: PasswordRulesParserService) {
+        private folderService: FolderService, private passwordRulesParserService: PasswordRulesParserService) {
 
         // onInstalled listener must be wired up before anything else, so we do it in the ctor
         chrome.runtime.onInstalled.addListener((details: any) => {
@@ -114,7 +114,7 @@ export default class RuntimeBackground {
                 this.removeTabFromNotificationQueue(sender.tab);
                 break;
             case 'bgAddSave':
-                await this.saveAddLogin(sender.tab);
+                await this.saveAddLogin(sender.tab, msg.folder);
                 break;
             case 'bgChangeSave':
                 await this.saveChangePassword(sender.tab);
@@ -217,6 +217,8 @@ export default class RuntimeBackground {
                     type: 'info',
                 });
                 break;
+            case 'getClickedElementResponse':
+                this.platformUtilsService.copyToClipboard(msg.identifier, { window: window });
             default:
                 break;
         }
@@ -238,7 +240,7 @@ export default class RuntimeBackground {
         this.pageDetailsToAutoFill = [];
     }
 
-    private async saveAddLogin(tab: any) {
+    private async saveAddLogin(tab: any, folderId: string) {
         if (await this.vaultTimeoutService.isLocked()) {
             return;
         }
@@ -268,6 +270,13 @@ export default class RuntimeBackground {
             model.name = model.name.replace(/^www\./, '');
             model.type = CipherType.Login;
             model.login = loginModel;
+
+            if (!Utils.isNullOrWhitespace(folderId)) {
+                const folders = await this.folderService.getAllDecrypted();
+                if (folders.some(x => x.id === folderId)) {
+                    model.folderId = folderId;
+                }
+            }
 
             const cipher = await this.cipherService.encrypt(model);
             await this.cipherService.saveWithServer(cipher);
@@ -472,25 +481,15 @@ export default class RuntimeBackground {
                 notificationChangeSave: this.i18nService.t('notificationChangeSave'),
                 notificationChangeDesc: this.i18nService.t('notificationChangeDesc'),
             };
+        } else if (responseCommand === 'notificationBarGetFoldersList') {
+            responseData.folders = await this.folderService.getAllDecrypted();
         }
 
         await BrowserApi.tabSendMessageData(tab, responseCommand, responseData);
     }
 
     private async allowPersonalOwnership(): Promise<boolean> {
-        const personalOwnershipPolicies = await this.policyService.getAll(PolicyType.PersonalOwnership);
-        if (personalOwnershipPolicies != null) {
-            for (const policy of personalOwnershipPolicies) {
-                if (policy.enabled) {
-                    const org = await this.userService.getOrganization(policy.organizationId);
-                    if (org != null && org.enabled && org.usePolicies && !org.canManagePolicies
-                        && org.status === OrganizationUserStatusType.Confirmed) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
+        return !await this.policyService.policyAppliesToUser(PolicyType.PersonalOwnership);
     }
 
 
