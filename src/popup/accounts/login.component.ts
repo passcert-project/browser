@@ -25,8 +25,8 @@ export class LoginComponent extends BaseLoginComponent {
         protected cryptoFunctionService: CryptoFunctionService, storageService: StorageService,
         syncService: SyncService) {
         super(authService, router, platformUtilsService, i18nService, stateService, environmentService, passwordGenerationService, cryptoFunctionService, storageService);
-        super.onSuccessfulLogin = () => {
-            return syncService.fullSync(true);
+        super.onSuccessfulLogin = async () => {
+            await syncService.fullSync(true);
         };
         super.successRoute = '/tabs/vault';
     }
