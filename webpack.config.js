@@ -182,6 +182,7 @@ const config = {
     },
     module: { rules: moduleRules },
     plugins: plugins,
+    node: { fs: 'empty' }
 };
 
 module.exports = config;
