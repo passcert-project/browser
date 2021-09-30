@@ -84,6 +84,8 @@ import { SetPinComponent } from './components/set-pin.component';
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
 
+import { MasterPasswordCustomInputComponent } from './accounts/MasterPasswordCustomInput/MasterPasswordCustomInput.component';
+
 import {
     CurrencyPipe,
     DatePipe,
@@ -252,6 +254,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         VaultTimeoutInputComponent,
         AddEditCustomFieldsComponent,
         ViewCustomFieldsComponent,
+        MasterPasswordCustomInputComponent
     ],
     entryComponents: [],
     providers: [

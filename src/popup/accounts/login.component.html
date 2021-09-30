@@ -27,6 +27,10 @@
                         <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword"
                             class="monospaced" [(ngModel)]="masterPassword" required appInputVerbatim>
                     </div>
+                    <app-MasterPasswordCustomInput>
+                        
+                    </app-MasterPasswordCustomInput>
+
                     <div class="action-buttons">
                         <a class="row-btn" href="#" appStopClick appBlurClick
                             appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword()">
