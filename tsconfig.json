@@ -9,6 +9,7 @@
     "allowJs": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "resolveJsonModule":true,
     "paths": {
       "jslib-common/*": [
         "jslib/common/src/*"
