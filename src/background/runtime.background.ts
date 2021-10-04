@@ -497,7 +497,7 @@ export default class RuntimeBackground {
         let rules: RuleData[];
         const rulesParser = new PasswordRulesParser();
         rules = rulesParser.parsePasswordRules(policyAnnotation);
-
+        console.log("RULES => ", rules);
         // new policy, reset possible left over values
         this.passwordRulesParserService.resetRulesReferences();
 
@@ -505,7 +505,7 @@ export default class RuntimeBackground {
         this.passwordGenerationService.setWebsitePasswordRules(passwordRequirements);
     }
 
-    // TODO need help to have this working for subdomains and so on
+    // TODO: need help to have this working for subdomains and so on
     private readRulesFromRepo(): any {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             var tab = tabs[0];
