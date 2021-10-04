@@ -103,8 +103,4 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
     console.log(Utils.debugStringWithTimestamp('MasterPasswordCustomInputComponent: OnDestroy'));
   }
  //#endregion
-
-  
- 
-
 }
