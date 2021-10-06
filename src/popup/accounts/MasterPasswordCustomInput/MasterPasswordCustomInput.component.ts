@@ -89,8 +89,9 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
   {
     const arrayBufferView = new Uint8Array(this.modifiedinput);
 
-    console.log('Submitting this to parent:' + arrayBufferView);
+    //console.log('Submitting this to parent:' + arrayBufferView);
 
+    //NOTE: Can't clear the password after sending it to the parent because then the parent will try to login with a cleared password
     this.sendingToParentTest.emit(this.modifiedinput);
   }
 
