@@ -8,7 +8,7 @@
         </div>
         <div class="right">
             <button type="submit" appBlurClick [disabled]="form.loading">
-                <span [hidden]="form.loading">{{'login' | i18n}}</span>
+                <span [hidden]="true">{{'login' | i18n}}</span>
                 <i class="fa fa-spinner fa-lg fa-spin" [hidden]="!form.loading" aria-hidden="true"></i>
             </button>
         </div>
