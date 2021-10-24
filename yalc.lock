@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@passcert/pwrules-annotations": {
-      "signature": "10a0c2bd6467430d739c6a5db4c9f589",
-      "file": true
-    }
-  }
-}

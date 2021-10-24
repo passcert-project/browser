@@ -14,7 +14,7 @@ document.addEventListener('visibilitychange', event => {
 function searchDomForPasswordRules(): void {
     const policiesFound = document.querySelectorAll('[passwordrules]');
 
-    // TODO what if there is more than one policy?
+    // TODO: what if there is more than one policy?
     if (policiesFound.length > 0) {
         chrome.runtime.sendMessage({
             command: 'bgWebsitePasswordRules',
@@ -22,7 +22,7 @@ function searchDomForPasswordRules(): void {
             sender: 'websitePasswordRules',
         });
     }
-    // TODO search the quirks in apple's repo
+    // TODO: search the quirks in apple's repo
     else if (policiesFound.length === 0) {
         chrome.runtime.sendMessage({
             command: 'bgWebsitePasswordRules',
