@@ -23,7 +23,7 @@
                 </div>
                 <div class="box-content-row box-content-row-flex" appBoxRow>
                     <div class="row-main">
-                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
+                        <label for="masterPassword">{{'masterPass' | i18n}}. Using custom master password logic.</label>
                         <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}" name="MasterPassword"
                             class="monospaced" [ngModel]="dummyInput" (ngModelChange)="onInsideChange($event)" required appInputVerbatim>
                     </div>
