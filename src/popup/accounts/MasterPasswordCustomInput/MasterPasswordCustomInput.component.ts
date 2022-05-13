@@ -11,7 +11,7 @@ import { Utils } from 'jslib-common/misc/utils';
   selector: 'app-MasterPasswordCustomInput',
   templateUrl: './MasterPasswordCustomInput.component.html',
 
-  // Step 1: copy paste this providers property
+  //Step 1: Set up the providers property for CVA
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,25 +21,22 @@ import { Utils } from 'jslib-common/misc/utils';
   ],
 })
 
-// Step 2: Add "implements ControlValueAccessor"  
+//Step 2: implements the CVA interface
 export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDestroy, ControlValueAccessor {
 
   //#region Variables
-  input: string;
+  //NOTE:This needs to be here because the NGModel has to bind to something. It's never actually written to
+  dummyInput: string;
+  showPassword: boolean = false;
   
   modifiedinput = new ArrayBuffer(0);
-  
-  @Output() sendingToParentTest = new EventEmitter<ArrayBuffer>();
-  
-  showPassword: boolean = false;
+  @Output() sendPasswordToParentEvent = new EventEmitter<ArrayBuffer>();
   //#endregion
-  constructor() { }
- 
   
   //#region Functions
+  constructor() { }
 
-  // Step 3: Copy paste this stuff here
-  //ControlValueAccessor functions
+  //Step 3: ControlValueAccessor functions
   onChange: any = () => {};
   onTouch: any = () => {};
   registerOnChange(fn: any): void {
@@ -49,7 +46,7 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
     this.onTouch = fn;
   }
 
-  // Step 4: Define what should happen in this component, if something changes outside
+  //Step 4: Define what should happen in this component, if something changes outside
   writeValue(input: string) {
     //Nothing
   }
@@ -60,22 +57,15 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
   // b) we emit to the ouside by calling onChange on ngModelChange
 
   onInsideChange(receivedString: string) {
-    //console.log('ReceivedString: ' + receivedString);
-
     //Clear previous ArrayBuffer
     let inputArrayView = new Uint8Array(this.modifiedinput);
-    //console.log('inputArrayView: Pre-Clear:' + inputArrayView);
 
+    //Erase the previous buffer containing the password
     inputArrayView.fill(1);
-
-    //console.log('inputArrayView: After-Clear:' + inputArrayView);
 
     //Note: important to assing the underlying buffer instead of the view :)
     this.modifiedinput = Utils.fromUtf8ToArray(receivedString).buffer;
-
-    inputArrayView = new Uint8Array(this.modifiedinput);
-    //console.log('inputArrayView: After-String:' + inputArrayView);
-
+    
     this.onChange(this.modifiedinput);
   }
 
@@ -87,12 +77,8 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
 
   submitToParent()
   {
-    const arrayBufferView = new Uint8Array(this.modifiedinput);
-
-    //console.log('Submitting this to parent:' + arrayBufferView);
-
     //NOTE: Can't clear the password after sending it to the parent because then the parent will try to login with a cleared password
-    this.sendingToParentTest.emit(this.modifiedinput);
+    this.sendPasswordToParentEvent.emit(this.modifiedinput);
   }
 
   //Logging functions
