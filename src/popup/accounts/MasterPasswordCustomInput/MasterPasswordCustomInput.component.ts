@@ -63,8 +63,18 @@ export class MasterPasswordCustomInputComponent implements OnInit, OnInit, OnDes
     //Erase the previous buffer containing the password
     inputArrayView.fill(1);
 
-    //Note: important to assing the underlying buffer instead of the view :)
-    this.modifiedinput = Utils.fromUtf8ToArray(receivedString).buffer;
+    
+    //Note: testing an inline method and seeing if there's better results
+    if (Utils.isNode || Utils.isNativeScript) {
+      this.modifiedinput = new Uint8Array(Buffer.from(receivedString, 'utf8')).buffer;
+    } else {
+      const strUtf8 = unescape(encodeURIComponent(receivedString));
+      const arr = new Uint8Array(strUtf8.length);
+      for (let i = 0; i < strUtf8.length; i++) {
+          arr[i] = strUtf8.charCodeAt(i);
+      }
+      this.modifiedinput = arr.buffer;
+    }
     
     this.onChange(this.modifiedinput);
   }
