@@ -41,7 +41,7 @@
                 
             </div>
 
-            <app-MasterPasswordCustomInput #child (sendingToParentTest)="receivePass($event)">
+            <app-MasterPasswordCustomInput #child (sendPasswordToParentEvent)="receivePass($event)">
 
             </app-MasterPasswordCustomInput>
             <div class="box-content-row" [hidden]="!showCaptcha()">
